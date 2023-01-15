@@ -31,6 +31,17 @@ The ones found in this repo are meant for demonstrative purposes only. An exampl
 └── utils.py
 ```
 
+To sure you don't commit any private changes to your branch, you'll probably want to stop tracking the template files:
+
+```
+git update-index --skip-worktree credentials.json
+git update-index --skip-worktree attachments/file1.png
+git update-index --skip-worktree attachments/file2.jpg
+git update-index --skip-worktree emails/list1.txt
+git update-index --skip-worktree emails/list2.txt
+```
+
+
 <br>
 
 ## (1) Configuring the gmail API
