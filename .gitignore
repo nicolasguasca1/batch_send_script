@@ -1,0 +1,12 @@
+*.DS_store*
+*.json
+!credentials.json
+attachments/*.png
+attachments/*.jpg
+emails/*.txt
+*__pycache__*
+test.py
+!emails/list1.txt
+!emails/list2.txt
+!attachments/file1.png
+!attachments/file2.jpg
