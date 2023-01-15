@@ -35,6 +35,7 @@ To sure you don't commit any private changes to your branch, you'll probably wan
 
 ```
 git update-index --skip-worktree credentials.json
+git update-index --skip-worktree config.py
 git update-index --skip-worktree attachments/file1.png
 git update-index --skip-worktree attachments/file2.jpg
 git update-index --skip-worktree emails/list1.txt
