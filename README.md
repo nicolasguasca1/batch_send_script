@@ -65,12 +65,12 @@ If the environment build doens't work (I find this often happens for different O
 
 ## (3) Setting up the email parameters
 
-The contents of the email and subject line are controlled by the `config.py` script. The config script found in this repo contains empty strings so that different users/clones can have different set-ups. This file is included in the .gitignore, so it won't be pushed with any changes.
+The contents of the email and subject line are controlled by the `config.py` script. The config script found in this repo contains empty strings so that different users/clones can have different set-ups. 
 
 1. `txt_message`: Put your main message here.
 2. `gmail_address`: Put your gmail address here.
 3. `subject_line`: Put your subject line here.
-4. There are four other parameters: `scopes`, `credentials`, `port`, and `max_emails`, but only adjust these ify ou know.
+4. There are four other parameters: `scopes`, `credentials`, `port`, and `max_emails`, but only adjust these if you know what you are doing.
 
 <br>
 
@@ -86,11 +86,15 @@ jim@gmail.com
 
 Any spaces, semi-colons, or line-breaks will treated a possible separators. Angle brackets will be removed as well. For example `John Doe <john.doe@email.com>` will just become `john.doe@email.com`. For a "valid" email to be considered, it must contain an ampersand. Users can add as many *.txt files to this folder, and all emails will combined for the final list (e.g. emails/emails2.txt, ..., emails/moreemails.txt). 
 
+Remove the toy list1.txt and list2.txt files before sending your email.
+
 <br>
 
 ## (5) Set up attachments (if any)
 
 Users can also include attachments in the email by dropping files in the `attachments` folder. If the attachment is an email, the maximum image size rule will kick in upon upload (see below). For example, of file1.png is a 1500x2000 image, and there is a max_image_size=1000, when the email will be shrunken by 50%.
+
+Remove the toy file1.png and file2.jpg files before sending your email.
 
 <br>
 
