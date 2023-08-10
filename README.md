@@ -105,21 +105,15 @@ After the `config.py` has been set up, email lists have been added to the `email
 
 1. Populate a google sheet with the email addresses you will send to based on the report that uses the EntID of the company. Use this an an example: https://docs.google.com/spreadsheets/d/1sGvyJ9ws1H3yTtUmVO9s14pXcGflb1pAUuKxYRi_EfA/edit#gid=0
 
-2. When the sheet has been normalized from N/A and NOVALUES cells. Export a CSV of the entire list like the 'To Export' tab shows in the google sheet and put the file in this directory.
+2. When the sheet has been normalized from N/A and NOVALUES cells, export a CSV of the entire list like the 'To Export' tab shows in the google sheet and put the file in this directory.
 
 3. Run the following command
 
 ```python
 conda activate gmailAPI                                                                                                                ─╯
-python3 send_emails.py --attachment_suffix <PUT HERE THE NAME OF THE DIRECTORY CONTAINING ALL THE AS REPORTS> --csv_file_path <PUT HERE THE NAME OF THE CSV FILE YOU IMPORTED INTO THE DIRECTORY> --email_suffix txt
+python3 send_emails.py --attachment_suffix <PUT HERE THE path OF THE DIRECTORY CONTAINING ALL THE AS REPORTS> --csv_file_path <PUT HERE THE NAME OF THE CSV FILE YOU IMPORTED INTO THE DIRECTORY>
 ```
 
 ````conda activate gmailAPI                                                                                   ─╯
 python3 send_emails.py --folder_attachments /Users/nicolasguascasantamaria/Desktop/RevAPIS/extRepo/gmailAPI/AS_May_Jun --csv_file_path Matched_emails_copy.csv```
 ````
-
-To correct current problems:
-
-https://stackoverflow.com/questions/58561812/zip-file-gets-corrupted-when-sent-with-gmail-api-and-compressed-with-zlib
-
-https://stackoverflow.com/questions/13006156/how-can-i-send-an-email-with-a-zip-file-attached-in-python
