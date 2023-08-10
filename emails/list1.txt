@@ -1,3 +1,1 @@
-jane_doe@gmail.com;   johndoe123@hotmail.com
-
-jazz_is_great@outlook.ca
+[nicolas.guasca@gmail.com,8]; [nicolas.g@revelator.com,79];

@@ -1,6 +1,6 @@
 *.DS_store*
-*.json
 !credentials.json
+*.json
 attachments/*.png
 attachments/*.jpg
 emails/*.txt
@@ -10,3 +10,7 @@ test.py
 !emails/list2.txt
 !attachments/file1.png
 !attachments/file2.jpg
+*.csv
+./AS_May_Jun
+./attachments
+*.txt

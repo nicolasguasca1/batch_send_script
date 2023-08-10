@@ -116,4 +116,4 @@ dependencies:
   - yarl=1.8.2=py310h90acd4f_0
   - zlib=1.2.13=h4dc903c_0
   - zstd=1.5.2=hcb37349_0
-prefix: /Users/drysdaleerik/miniconda3/envs/gmailAPI
+prefix: /usr/local/Caskroom/miniconda/base/envs/gmailAPI

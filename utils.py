@@ -3,26 +3,36 @@ Utility scripts for sending emails and other tasks
 """
 
 # External modules
+import array
 import os
 import sys
+import io
 import cv2
 import numpy as np
 import pandas as pd
 import email.message
 import googleapiclient.discovery
+
+
+import os
+import shutil
+import tempfile
+import zipfile
+
+
 from base64 import urlsafe_b64encode
 from email.message import EmailMessage
 from google_auth_oauthlib.flow import InstalledAppFlow
 
 
-def get_gmail_service(scopes:str or list, credentials:str, port:int=0) -> googleapiclient.discovery:
+def get_gmail_service(scopes: str or list, credentials: str, port: int = 0) -> googleapiclient.discovery:
     """
     Using the googleapiclient.discovery.build method to get a service connection to the gmail API
 
     Parameters
     ----------
     credentials : str
-        Path to the credentials.json file
+        Path to the credenciales.json file
     port : int, optional
         Port to use for the local server, by default 0
 
@@ -33,16 +43,29 @@ def get_gmail_service(scopes:str or list, credentials:str, port:int=0) -> google
     """
     # Input checks
     scopes = str2list(scopes)
-    assert isinstance(scopes, list), f"Scopes should be a list, not {type(scopes)}"
-    assert os.path.exists(credentials), f"Credentials file {credentials} does not exist"
-    # Use the local and secret 
-    flow = InstalledAppFlow.from_client_secrets_file(client_secrets_file=credentials, scopes=scopes)
+    assert isinstance(
+        scopes, list), f"Scopes should be a list, not {type(scopes)}"
+    assert os.path.exists(
+        credentials), f"credenciales file {credentials} does not exist"
+    # Use the local and secret
+    flow = InstalledAppFlow.from_client_secrets_file(
+        client_secrets_file=credentials, scopes=scopes)
     creds = flow.run_local_server(port=port)
     service = googleapiclient.discovery.build('gmail', 'v1', credentials=creds)
     return service
 
 
-def create_message(message:str, email_from:str, email_to:str, subject:str, folder_attachents:str, attachment_suffix:str or list, max_image_size:int=1024) -> email.message:
+def get_email_from_(identifier, folder_path):
+    for filename in os.listdir(folder_path):
+        file_identifier = os.path.splitext(filename)[0]
+        if file_identifier == identifier:
+            with open(os.path.join(folder_path, filename), 'r') as file:
+                email = file.read().strip()
+                return email
+    return None  # Identifier not found
+
+
+def create_message(message: str, email_from: str, email_to: str, subject: str, folder_attachments: str, attachment_suffix: str or list, max_image_size: int = 1024) -> email.message:
     """
     Use the email.message.EmailMessage class to create a message and return its raw base64 encoded version in a dictionary
 
@@ -56,45 +79,96 @@ def create_message(message:str, email_from:str, email_to:str, subject:str, folde
         Email address to send to
     subject : str
         Subject line
-    folder_attachents : str
+    folder_attachments : str
         Path to the folder containing the attachments
     attachment_suffix : str or list
         Suffix of the attachment to send
-    
+
     Returns
     -------
     dict
         Dictionary with the raw base64 encoded message
     """
     # Input checks
-    assert isinstance(message, str), f"Message should be a string, not {type(message)}"
-    assert isinstance(email_from, str), f"Email_from should be a string, not {type(email_from)}"
-    assert isinstance(email_to, str), f"Email_to should be a string, not {type(email_to)}"
-    assert isinstance(subject, str), f"Subject should be a string, not {type(subject)}"
-    assert os.path.exists(folder_attachents), f"Folder {folder_attachents} does not exist"
-    attachment_suffix = str2list(attachment_suffix)
-    assert isinstance(attachment_suffix, list), f"Attachment_suffix should be a list, not {type(attachment_suffix)}"
+    assert isinstance(
+        message, str), f"Message should be a string, not {type(message)}"
+    assert isinstance(
+        email_from, str), f"Email_from should be a string, not {type(email_from)}"
+    assert isinstance(
+        email_to, str), f"Email_to should be a string, not {type(email_to)}"
+    assert isinstance(
+        subject, str), f"Subject should be a string, not {type(subject)}"
+    assert os.path.exists(
+        folder_attachments), f"Folder {folder_attachments} does not exist"
+    # attachment_suffix = str2list(attachment_suffix)
+    # assert isinstance(
+    #     attachment_suffix, list), f"Attachment_suffix should be a list, not {type(attachment_suffix)}"
     # Create the message
     msg = EmailMessage()
-    msg.set_content(message)
+    msg.set_content(message, subtype='html')
     msg['To'] = email_to
-    msg['From'] = email_from
+    msg['From'] = 'Nicolás Guasca'
     msg['Subject'] = subject
-    # Find the attachments
-    files = find_files_with_suffix(folder_attachents, attachment_suffix)
-    print(f"Found {len(files)} files with suffix {attachment_suffix} in folder {folder_attachents}: {files}")
+    # _____________________________________________________________________________
+
+    # # Find the folders
+    # folders = find_files_with_suffix(folder_attachments, attachment_suffix)
+    # print(f"Found {len(folders)} folders with suffix {attachment_suffix} in folder {folder_attachments}: {folders}")
+
+    # Create a temporary directory to store the zip files
+    temp_dir = tempfile.mkdtemp()
+
     # Add the attachments
-    for file in files:
-        subtype = file.split('.')[-1]
-        path = os.path.join(folder_attachents, file)
-        is_image = is_file_image(path)
-        if is_image:
-            data = image2bytes(path=path, max_size=max_image_size)
-        else:
-            with open(path, 'rb') as fp:
-                data = fp.read()
-        msg.add_attachment(data, maintype='image', subtype=subtype)
-    # Return the message
+    # for folder in folders:
+    folder_name = folder_attachments+'/'+attachment_suffix
+    # folder_name = attachment_suffix
+    zip_path = os.path.join(temp_dir, f"{folder_name}.zip")
+
+    # Check directory permissions
+    permissions = os.access(folder_name, os.W_OK)
+    print(f"Directory '{folder_name}' has write permission: {permissions}")
+
+    # # Create a zip file
+    # with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zip_file:
+    #     # Add all files and subdirectories in the folder to the zip file
+    #     for file in os.listdir(folder_name):
+    #         if file.endswith(".csv"):
+    #             file_path = os.path.join(folder_name, file)
+    #             relative_path = os.path.relpath(file_path, folder_name)
+    #             zip_file.write(file_path, arcname=relative_path)
+    #     # for root, dirs, files in os.walk(folder_name):
+    #     #     for file in files:
+    #     #         file_path = os.path.join(root, file)
+    #     #         print(f'File to be zipped is {file}')
+    #     #         print(f'Zipping {file_path}')
+    #     #         relative_path = os.path.relpath(file_path, folder_name)
+    #     #         zip_file.write(file_path, arcname=os.path.join(
+    #     #             folder_name, relative_path))
+
+    # # Read the zip file as binary data
+    # with open(zip_path, "rb") as zip_file:
+    #     data = zip_file.read()
+
+    # MOMENTANOUESLY
+
+    with io.BytesIO() as zip_buffer:
+        with zipfile.ZipFile(zip_buffer, "w", zipfile.ZIP_DEFLATED) as zip_file:
+            for file in os.listdir(folder_name):
+                if file.endswith(".csv"):
+                    file_path = os.path.join(folder_name, file)
+                    relative_path = os.path.relpath(file_path, folder_name)
+                    zip_file.write(file_path, arcname=relative_path)
+
+        # Get the bytes of the zip file
+        zip_data = zip_buffer.getvalue()
+    # MOMENTANOUESLY
+
+    # Add the attachment to the email
+    msg.add_attachment(zip_data, maintype='application',
+                       subtype='zip', filename=f"{attachment_suffix}.zip")
+
+    # Clean up the temporary directory
+    shutil.rmtree(temp_dir)
     return msg
 
 
@@ -105,7 +179,7 @@ def message2bytes(msg) -> dict:
     return di_msg
 
 
-def find_files_with_suffix(folder:str, suffix:str or list) -> list:
+def find_files_with_suffix(folder: str, suffix: str or list) -> list:
     """
     Search a folder for all files with a certain suffix
 
@@ -120,7 +194,7 @@ def find_files_with_suffix(folder:str, suffix:str or list) -> list:
     -------
     pd.Series
         Series of all files with the correct suffix in the folder
-    
+
     Example
     -------
     >>> find_files_with_suffix('data','txt')
@@ -130,17 +204,22 @@ def find_files_with_suffix(folder:str, suffix:str or list) -> list:
     """
     # Input checks
     assert os.path.exists(folder), f"Folder {folder} does not exist"
-    suffix = str2list(suffix)
+    # suffix = str2list(suffix)
     # Find all files in the folder
     files = pd.Series(os.listdir(folder))
-    file_suffixes = files.str.split('.',regex=False).apply(lambda x: x[-1],1).to_list()
+    file_suffixes = files.str.split('.', regex=False).apply(
+        lambda x: x[-1], 1).to_list()
     # Find all files with the correct suffix
     idx_suffix = [file_suffix in suffix for file_suffix in file_suffixes]
     files_suffix = files[idx_suffix].to_list()
     return files_suffix
+# Find all files in the folder
+    # files = os.listdir(folder)
+
+    return files
 
 
-def str2list(string:str or list):
+def str2list(string: str or list):
     """
     Check if a string is a list, if not, make it a list
 
@@ -160,7 +239,7 @@ def str2list(string:str or list):
         return string
 
 
-def process_email_list(folder:str, file_suffix:str='txt') -> list:
+def process_email_list(folder: str, file_suffix: str = 'txt') -> list:
     """
     This function searched through a folder, find all the files that end with a certain suffix (default .txt), and then parses the files and returns a list of all the emails in the files. The function should return a list of emails, where each email is a string. The function should also print out the number of emails found in the folder.
 
@@ -170,7 +249,7 @@ def process_email_list(folder:str, file_suffix:str='txt') -> list:
         Path to the folder to search
     file_suffix : str, optional
         Suffix of the files to search for, by default 'txt'
-    
+
     Returns
     -------
     list
@@ -179,11 +258,12 @@ def process_email_list(folder:str, file_suffix:str='txt') -> list:
     # Input checks
     assert os.path.exists(folder), f"Folder {folder} does not exist"
     # Find all files in the folder
-    files = find_files_with_suffix(folder, file_suffix)
+    files = find_files_with_suffix(folder, file_suffix
+                                   )
     # Find all emails in the files
     emails = []
     for file in files:
-        with open(os.path.join(folder,file)) as f:
+        with open(os.path.join(folder, file)) as f:
             emails.extend(f.read().splitlines())
     # Make sure all emails are lists
     emails = [str2list(email) for email in emails]
@@ -196,13 +276,20 @@ def process_email_list(folder:str, file_suffix:str='txt') -> list:
     # Seperate on any possible delimiters
     emails = emails.str.split('\\s|\\;|\\n').explode().reset_index(drop=True)
     # Valid email must have an amperstand
-    emails = emails[emails.str.contains('\\@',regex=True)]
+    emails = emails[emails.str.contains('\\@', regex=True)]
     # Remove the <> from the emails
-    emails = emails.str.replace('\\<|\\>','',regex=True)
+    emails = emails.str.replace('\\<|\\>', '', regex=True)
     # Return list
     emails = emails.to_list()
     print(f"Found {len(emails)} emails in {folder}")
     return emails
+
+
+def extract_values(tuple_set: array):
+    values = []
+    for tuple_item in tuple_set:
+        values.append(tuple_item[0])
+    return values
 
 
 def press_Yn_to_continue():
@@ -219,7 +306,7 @@ def press_Yn_to_continue():
         sys.exit('You pressed n, breaking')
 
 
-def is_file_image(path:str) -> bool:
+def is_file_image(path: str) -> bool:
     """Check whether a file is an image"""
     # Input checks
     assert os.path.exists(path), f"{path} does not exist"
@@ -227,7 +314,7 @@ def is_file_image(path:str) -> bool:
     return check
 
 
-def image2bytes(path:str, max_size:int=1024) -> bytes:
+def image2bytes(path: str, max_size: int = 1024) -> bytes:
     """
     Convert an image to bytes
 
@@ -237,7 +324,7 @@ def image2bytes(path:str, max_size:int=1024) -> bytes:
         Path to the image
     max_size : int, optional
         Maximum size of the image, by default 1024
-    
+
     Returns
     -------
     bytes
