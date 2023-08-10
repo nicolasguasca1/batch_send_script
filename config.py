@@ -18,7 +18,7 @@ txt_message2 = '''<!DOCTYPE html >
 </head >
 <body >
         <p><strong>August 11, 2023</strong></p>
-        <p>Dear {email},</p>
+        <p>Dear Customer,</p>
 
         <p>Please find attached your most recent Suspected Artificial Streaming claims report. This report originates from Spotify and identifies the suspected artificial streams from your distributed catalog. DSPs send these monthly reports to explain royalties they are withholding, and to ensure you are aware of what has been distributed under your catalog, and to make us aware as your distribution partner.</p>
 
@@ -30,16 +30,11 @@ txt_message2 = '''<!DOCTYPE html >
 
         <p>Distributing Artificial Streaming is regarded as fraud by our DSP partners and poses a risk to all of us. Understanding your responsibilities in combating music fraud as a Revelator customer is vital.</p>
 
-        <p>Do you require our assistance in creating or implementing an anti-fraud policy? Are you in need of help in tracking inspections? If so, please <a href="https://pages.revelator.com/meetings/nicolas-guasca/customer-success" target="blank">book a time with me here</a>.</p>
-
-        <p> Let's discuss how we can offer support.</p>
+        <p>Do you require our assistance in creating or implementing an anti-fraud policy? Are you in need of help in tracking inspections? If so, please <a href="https://pages.revelator.com/meetings/nicolas-guasca/customer-success" target="blank">book a time with me here</a>.Let's discuss how we can offer support.</p>
 
         <p> Appreciate your attention to this matter.</p>
 
-        <p> Thank you for choosing us as your partner. We look forward to continuing to serve you!</p>
-
-        <p> Best regards,<br>
-        Nicolás Guasca
+        <p>Nicolás Guasca</p>
 
             <p>&nbsp;</p>
         <h3 style="text-align: center; color: #3f7320;"><span class="gmail_signature_prefix">--</span></h3>

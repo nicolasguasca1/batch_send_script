@@ -1,5 +1,5 @@
 *.DS_store*
-!credentials.json
+!credenciales.json
 *.json
 attachments/*.png
 attachments/*.jpg

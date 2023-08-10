@@ -6,7 +6,7 @@ This repo was tested on Mac Venture 13.1 (22C65) and Python 3.10.8.
 
 There are four files in this repo that will need to be updated by the user:
 
-- `credentials.json` (see (1))
+- `credenciales.json` (see (1))
 - `config.py` (see (3))
 - `emails/example1.txt` (see (4))
 - `attachments/file1.png` (see (5))
@@ -21,7 +21,7 @@ The ones found in this repo are meant for demonstrative purposes only. An exampl
 │   ├── file2.jpg
 │   └── readme.md
 ├── config.py
-├── credentials.json
+├── credenciales.json
 ├── emails
 │   ├── list1.txt
 │   ├── list2.txt
@@ -34,7 +34,7 @@ The ones found in this repo are meant for demonstrative purposes only. An exampl
 To sure you don't commit any private changes to your branch, you'll probably want to stop tracking the template files:
 
 ```
-git update-index --skip-worktree credentials.json
+git update-index --skip-worktree credenciales.json
 git update-index --skip-worktree config.py
 git update-index --skip-worktree attachments/file1.png
 git update-index --skip-worktree attachments/file2.jpg
@@ -69,7 +69,7 @@ The contents of the email and subject line are controlled by the `config.py` scr
 1. `txt_message`: Put your main message here.
 2. `gmail_address`: Put your gmail address here.
 3. `subject_line`: Put your subject line here.
-4. There are four other parameters: `scopes`, `credentials`, `port`, and `max_emails`, but only adjust these if you know what you are doing.
+4. There are four other parameters: `scopes`, `credenciales`, `port`, and `max_emails`, but only adjust these if you know what you are doing.
 
 <br>
 
