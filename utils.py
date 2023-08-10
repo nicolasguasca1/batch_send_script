@@ -128,29 +128,6 @@ def create_message(message: str, email_from: str, email_to: str, subject: str, f
     permissions = os.access(folder_name, os.W_OK)
     print(f"Directory '{folder_name}' has write permission: {permissions}")
 
-    # # Create a zip file
-    # with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zip_file:
-    #     # Add all files and subdirectories in the folder to the zip file
-    #     for file in os.listdir(folder_name):
-    #         if file.endswith(".csv"):
-    #             file_path = os.path.join(folder_name, file)
-    #             relative_path = os.path.relpath(file_path, folder_name)
-    #             zip_file.write(file_path, arcname=relative_path)
-    #     # for root, dirs, files in os.walk(folder_name):
-    #     #     for file in files:
-    #     #         file_path = os.path.join(root, file)
-    #     #         print(f'File to be zipped is {file}')
-    #     #         print(f'Zipping {file_path}')
-    #     #         relative_path = os.path.relpath(file_path, folder_name)
-    #     #         zip_file.write(file_path, arcname=os.path.join(
-    #     #             folder_name, relative_path))
-
-    # # Read the zip file as binary data
-    # with open(zip_path, "rb") as zip_file:
-    #     data = zip_file.read()
-
-    # MOMENTANOUESLY
-
     with io.BytesIO() as zip_buffer:
         with zipfile.ZipFile(zip_buffer, "w", zipfile.ZIP_DEFLATED) as zip_file:
             for file in os.listdir(folder_name):
@@ -237,52 +214,6 @@ def str2list(string: str or list):
         return [string]
     else:
         return string
-
-
-def process_email_list(folder: str, file_suffix: str = 'txt') -> list:
-    """
-    This function searched through a folder, find all the files that end with a certain suffix (default .txt), and then parses the files and returns a list of all the emails in the files. The function should return a list of emails, where each email is a string. The function should also print out the number of emails found in the folder.
-
-    Parameters
-    ----------
-    folder : str
-        Path to the folder to search
-    file_suffix : str, optional
-        Suffix of the files to search for, by default 'txt'
-
-    Returns
-    -------
-    list
-        List of all emails found in the folder
-    """
-    # Input checks
-    assert os.path.exists(folder), f"Folder {folder} does not exist"
-    # Find all files in the folder
-    files = find_files_with_suffix(folder, file_suffix
-                                   )
-    # Find all emails in the files
-    emails = []
-    for file in files:
-        with open(os.path.join(folder, file)) as f:
-            emails.extend(f.read().splitlines())
-    # Make sure all emails are lists
-    emails = [str2list(email) for email in emails]
-    # Combine all emails to a single string
-    emails = pd.Series(' '.join([' '.join(email) for email in emails]))
-    # set to lower case
-    emails = emails.str.lower()
-    # Split on any possible spaces
-    emails = pd.Series(' '.join(emails[0].split()))
-    # Seperate on any possible delimiters
-    emails = emails.str.split('\\s|\\;|\\n').explode().reset_index(drop=True)
-    # Valid email must have an amperstand
-    emails = emails[emails.str.contains('\\@', regex=True)]
-    # Remove the <> from the emails
-    emails = emails.str.replace('\\<|\\>', '', regex=True)
-    # Return list
-    emails = emails.to_list()
-    print(f"Found {len(emails)} emails in {folder}")
-    return emails
 
 
 def extract_values(tuple_set: array):

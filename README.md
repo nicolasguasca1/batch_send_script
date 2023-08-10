@@ -117,3 +117,5 @@ python3 send_emails.py --attachment_suffix <PUT HERE THE path OF THE DIRECTORY C
 ````conda activate gmailAPI                                                                                   ─╯
 python3 send_emails.py --folder_attachments /Users/nicolasguascasantamaria/Desktop/RevAPIS/extRepo/gmailAPI/AS_May_Jun --csv_file_path Matched_emails_copy.csv```
 ````
+
+4. Make a copy of the logged activity after running the script and save it under logs.txt file

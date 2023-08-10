@@ -1,1 +1,0 @@
-Include comma or semi-colon or line-break list of emails in *.txt files in this folder
