@@ -103,11 +103,13 @@ After the `config.py` has been set up, email lists have been added to the `email
 
 <!-- STEP BY STEP TO SEND THE EMAILS -->
 
-1. Populate a google sheet with the email addresses you will send to based on the report that uses the EntID of the company. Use this an an example: https://docs.google.com/spreadsheets/d/1sGvyJ9ws1H3yTtUmVO9s14pXcGflb1pAUuKxYRi_EfA/edit#gid=0
+1. Paste the folder containing the AS Reports into this repository. You will use it later to build your command.
 
-2. When the sheet has been normalized from N/A and NOVALUES cells, export a CSV of the entire list like the 'To Export' tab shows in the google sheet and put the file in this directory.
+2.Populate a google sheet with the email addresses you will send to based on the report that uses the EntID of the company. Use this an an example: https://docs.google.com/spreadsheets/d/1sGvyJ9ws1H3yTtUmVO9s14pXcGflb1pAUuKxYRi_EfA/edit#gid=0
 
-3. Run the following command
+3. When the sheet has been normalized from N/A and NOVALUES cells, export a CSV of the entire list like the 'To Export' tab shows in the google sheet and put the file in this directory.
+
+4. Run the following command
 
 ```python
 conda activate gmailAPI                                                                                                                ─╯
@@ -118,4 +120,4 @@ python3 send_emails.py --attachment_suffix <PUT HERE THE path OF THE DIRECTORY C
 python3 send_emails.py --folder_attachments /Users/nicolasguascasantamaria/Desktop/RevAPIS/extRepo/gmailAPI/AS_May_Jun --csv_file_path Matched_emails_copy.csv```
 ````
 
-4. Make a copy of the logged activity after running the script and save it under logs.txt file
+5. Make a copy of the logged activity after running the script and save it under logs.txt file
