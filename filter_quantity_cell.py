@@ -15,7 +15,6 @@ for dir_b in os.listdir(parent_directory):
     dir_b_path = os.path.join(parent_directory, dir_b)
 
     if os.path.isdir(dir_b_path):
-        mantra = []
         for filename in os.listdir(dir_b_path):
             if filename.endswith('.csv'):
                 csv_path = os.path.join(dir_b_path, filename)
@@ -32,6 +31,10 @@ for dir_b in os.listdir(parent_directory):
                     if 'Quantity' in first_row and int(first_row['Quantity']) > 1000:
                         directories_above_threshold.append(dir_b)
                         break  # No need to check other files in this directory
+        # Step 6: Create 'directories_above.txt'
+        with open('directories_above_Quantity.txt', 'w') as dir_file:
+            for dir_name in directories_above_threshold:
+                dir_file.write(f"{dir_name}\n")
 
 print("Directories with CSV files where 'Quantity' is above 1000:",
       directories_above_threshold)

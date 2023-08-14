@@ -23,7 +23,6 @@ for dir_b in os.listdir(parent_directory):
                 with open(csv_path, 'r') as csv_file:
                     csv_reader = csv.DictReader(csv_file)
 
-                    # EXPERIMENTATION
                     # Step 1: Check if 'ISRC' is in the first row
                     header = next(csv_reader, None)
                     if header and 'ISRC' not in header:
@@ -37,6 +36,9 @@ for dir_b in os.listdir(parent_directory):
 
                     z_value = 0
                     current_isrc = None
+
+                    # Read and discard the first row (header row)
+                    next(csv_reader, None)
 
                     # Step 2: Iterate through the rows
                     for row in csv_reader:
@@ -55,11 +57,11 @@ for dir_b in os.listdir(parent_directory):
 
                         z_value += quantity
 
-                    # Append the last values
-                    if current_isrc is not None:
-                        mantra.append((current_isrc, z_value, dir_b))
-                        if z_value > 1000:
-                            print(f"{current_isrc}:{z_value}")
+                    # # Append the last values
+                    # if current_isrc is not None:
+                    #     mantra.append((current_isrc, z_value, dir_b))
+                    #     if z_value > 1000:
+                    #         print(f"{current_isrc}:{z_value}")
 
                     # Step 3: Create 'Mantra_above' and 'ISRCs_above.txt'
                     mantra_above = [(x, z, dir_name)
@@ -72,17 +74,10 @@ for dir_b in os.listdir(parent_directory):
                     if len(mantra_above) > 0:
                         directories_above_threshold.append(dir_b)
 
-                    # EXPERIMENTATION END
-                    # Assuming 'Quantity' is in the first row
-                    # Check if the file is empty before trying to read the first row
-                    try:
-                        first_row = next(csv_reader)
-                    except StopIteration:
-                        continue  # Move to the next file
+        # Step 6: Create 'directories_above.txt'
+        with open('directories_above_ISRC.txt', 'w') as dir_file:
+            for dir_name in directories_above_threshold:
+                dir_file.write(f"{dir_name}\n")
 
-                    if 'Quantity' in first_row and int(first_row['Quantity']) > 1000:
-                        directories_above_threshold.append(dir_b)
-                        break  # No need to check other files in this directory
-
-print("Directories with CSV files where 'Quantity' is above 1000:",
+print("Directories with CSV files where the sum of quantity per 'ISRC' is above 1000:",
       directories_above_threshold)
