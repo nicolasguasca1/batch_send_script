@@ -1,3 +1,4 @@
+import json
 import os
 import csv
 
@@ -8,6 +9,8 @@ parser.add_argument('--folder_to_filter', type=str,
 args = parser.parse_args()
 
 parent_directory = args.folder_to_filter
+result = {}  # Nested dictionary to store the result
+
 
 directories_above_threshold = []
 files_with_one_row = []  # To store files with only one row
@@ -106,7 +109,18 @@ for dir_b in os.listdir(parent_directory):
 
                     # Step 5: Modify 'directories_above_threshold'
                     if len(mantra_above) > 0:
-                        directories_above_threshold.append(dir_b)
+                        if dir_b not in result:
+                            # Initialize inner dictionary if needed
+                            result[dir_b] = {}
+                        # Store the result for this folder and file
+                        result[dir_b][filename] = mantra_above
+
+                    # if len(mantra_above) > 0:
+                    #     directories_above_threshold.append(dir_b)
+                    #     # Store the result for this folder and file
+                    #     result[dir_b] = {filename: mantra_above}
+                    # if len(mantra_above) > 0:
+                    #     directories_above_threshold.append(dir_b)
 
         # Step 6: Create 'directories_above.txt'
         with open('directories_above_ISRC.txt', 'w') as dir_file:
@@ -118,5 +132,11 @@ for dir_b in os.listdir(parent_directory):
             for dir_name, file_name in files_with_one_row:
                 one_row_file.write(f"{dir_name}:{file_name}\n")
 
+# Step 8: Create 'result.json'
+with open('analysis_result.json', 'w') as result_file:
+    json.dump(result, result_file, indent=4)
+
+print("Directories with no rows:",
+      files_with_one_row)
 print("Directories with CSV files where the sum of quantity per 'ISRC' is above 1000:",
-      directories_above_threshold)
+      mantra_above)
