@@ -8,7 +8,7 @@ python3 send_emails.py --attachment_suffix png jpg --email_suffix txt --max_imag
 
 # Arguments to specify the attachment and email suffix, as well as the maximum image size
 from utils import get_gmail_service, create_message, message2bytes, press_Yn_to_continue
-from config import txt_message, txt_message2, gmail_address, subject_line, scopes, credenciales, port, max_emails
+from config import txt_message2, gmail_address, subject_line, scopes, credenciales, port, max_emails
 from time import sleep
 
 from google.auth.transport.requests import Request

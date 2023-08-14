@@ -103,7 +103,7 @@ After the `config.py` has been set up, email lists have been added to the `email
 
 <!-- STEP BY STEP TO SEND THE EMAILS -->
 
-1. Paste the folder containing the AS Reports into this repository. You will use it later to build your command.
+1. Paste the folder containing the AS Reports into this repository and run the command `python filter_AS_folders.py`
 
 2.Populate a google sheet with the email addresses you will send to based on the report that uses the EntID of the company. Use this an an example: https://docs.google.com/spreadsheets/d/1sGvyJ9ws1H3yTtUmVO9s14pXcGflb1pAUuKxYRi_EfA/edit#gid=0
 

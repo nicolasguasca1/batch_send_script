@@ -109,7 +109,7 @@ def create_message(message: str, email_from: str, email_to: str, subject: str, f
     msg['To'] = email_to
     msg['From'] = 'Nicolás Guasca'
     msg['Subject'] = subject
-    msg['Cc'] = 'nicolas.guasca@gmail.com'
+    msg['Cc'] = 'golan@revelator.com', 'miriam@revelator.com'
 
     # _____________________________________________________________________________
 

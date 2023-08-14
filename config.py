@@ -4,8 +4,8 @@ Adjust the contents of the message and other parameters used by the API
 
 import os
 
-# Set up the email message
-txt_message = '\033[1m'+'August 11, 2023'+'\033[0m'+'\n\nDear customer, \n\nPlease find attached your most recent Suspected Artificial Streaming claims report. This report originates from Spotify and identifies the suspected artificial streams from your distributed catalog. DSPs send these monthly reports to explain royalties they are withholding, and to ensure you are aware of what has been distributed under your catalog, and to make us aware as your distribution partner.\n\nReview the attached suspected Artificial Streaming report and check our guide on How to manage artificial streaming: [https://helpdesk.revelator.com/support/solutions/articles/69000826948-how-to-manage-and-avoid-artificial-streaming] to understand if you need to take further action on the assets listed.\n\nIf none of your assets have surpassed the 1,000 artificial streams threshold, you are not being asked to take further action as your account is not at risk in any way.\n\nIf you have surpassed 1,000 on any single track, we urge you to enforce a rigorous inspection process on all tracks you distribute, to investigate and review the tracks in question, and to thoroughly read and review Revelator\'s Anti Fraud Policy: [https://www.revelator.com/anti-fraud-policy].\n\nDistributing Artificial Streaming is regarded as fraud by our DSP partners and poses a risk to all of us. Understanding your responsibilities in combating music fraud as a Revelator customer is vital.\n\nDo you require our assistance in creating or implementing an anti-fraud policy? Are you in need of help in tracking inspections? If so, please book a time with me here: [https://pages.revelator.com/meetings/nicolas-guasca/customer-success].\n\nLet\'s discuss how we can offer support.\n\nAppreciate your attention to this matter,\n\nNicolás Guasca\nCustomer Success Manager'
+# # Set up the email message
+# txt_message = '\033[1m'+'August 11, 2023'+'\033[0m'+'\n\nDear customer, \n\nPlease find attached your most recent Suspected Artificial Streaming claims report. This report originates from Spotify and identifies the suspected artificial streams from your distributed catalog. DSPs send these monthly reports to explain royalties they are withholding, and to ensure you are aware of what has been distributed under your catalog, and to make us aware as your distribution partner.\n\nReview the attached suspected Artificial Streaming report and check our guide on How to manage artificial streaming: [https://helpdesk.revelator.com/support/solutions/articles/69000826948-how-to-manage-and-avoid-artificial-streaming] to understand if you need to take further action on the assets listed.\n\nIf none of your assets have surpassed the 1,000 artificial streams threshold, you are not being asked to take further action as your account is not at risk in any way.\n\nIf you have surpassed 1,000 on any single track, we urge you to enforce a rigorous inspection process on all tracks you distribute, to investigate and review the tracks in question, and to thoroughly read and review Revelator\'s Anti Fraud Policy: [https://www.revelator.com/anti-fraud-policy].\n\nDistributing Artificial Streaming is regarded as fraud by our DSP partners and poses a risk to all of us. Understanding your responsibilities in combating music fraud as a Revelator customer is vital.\n\nDo you require our assistance in creating or implementing an anti-fraud policy? Are you in need of help in tracking inspections? If so, please book a time with me here: [https://pages.revelator.com/meetings/nicolas-guasca/customer-success].\n\nLet\'s discuss how we can offer support.\n\nAppreciate your attention to this matter,\n\nNicolás Guasca\nCustomer Success Manager'
 
 txt_message2 = '''<!DOCTYPE html >
 <html >
@@ -17,8 +17,12 @@ txt_message2 = '''<!DOCTYPE html >
     </style >
 </head >
 <body >
-        <p><strong>August 11, 2023</strong></p>
+
+        <p>Hello Miriam, Mainak and Golan, this email was created with the script we discussed on our call. Feel free to check it out <a href="https://github.com/nicolasguasca1/batch_send_script">here</a>.I managed to use HTML in order to have the formatting I was missing. I attached in this, one of the sample folders customers will receive. Let me know if you have comments. See below the information it will have:</p>
+
         <p>Dear Customer,</p>
+
+        <p><strong>August 11, 2023</strong></p>
 
         <p>Please find attached your most recent Suspected Artificial Streaming claims report. This report originates from Spotify and identifies the suspected artificial streams from your distributed catalog. DSPs send these monthly reports to explain royalties they are withholding, and to ensure you are aware of what has been distributed under your catalog, and to make us aware as your distribution partner.</p>
 
@@ -65,7 +69,7 @@ txt_message2 = '''<!DOCTYPE html >
 gmail_address = 'Nicolás Guasca'
 
 # Subject line
-subject_line = 'Suspected Artificial Streaming Report - August 2023'
+subject_line = 'TEST - Suspected Artificial Streaming Report - August 2023'
 
 
 # The gmail API can be used to send emails
