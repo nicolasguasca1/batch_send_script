@@ -29,7 +29,7 @@ for dir_b in os.listdir(parent_directory):
                         continue  # Move to the next file
 
                     if 'Quantity' in first_row and int(first_row['Quantity']) > 1000:
-                        directories_above_threshold.append(dir_b)
+                        directories_above_threshold.append([dir_b, csv_path])
                         break  # No need to check other files in this directory
         # Step 6: Create 'directories_above.txt'
         with open('directories_above_Quantity.txt', 'w') as dir_file:
