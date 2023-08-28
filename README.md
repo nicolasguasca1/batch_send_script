@@ -101,6 +101,10 @@ Remove the toy file1.png and file2.jpg files before sending your email.
 
 After the `config.py` has been set up, email lists have been added to the `emails/*.txt` folder, and attachments (optional) have been added to the `attachment/*` folder, the main script can be run. An example of the script call can be found below. When running this from the user command line, a broswer window should open for authentication to give the app access to send emails from your gmail account. If it doesn't happen automatically, you can copy the link that will be printed to the console. Additionally, after the email list is printed out, users will need to confirm they want to go ahead with sending the email by typing "Y" into the console when prompted. If you type "n" the script will exit and no emails will send. If you type in anything else, you will be re-prompted to type in either "Y" or "n".
 
+<!-- STEP BY STEP TO MODIFY THE FOLDERS -->
+
+1. Paste the folder containing the AS Reports into this repository and run the command `python filter_AS_folders.py`
+
 <!-- STEP BY STEP TO SEND THE EMAILS -->
 
 1. Paste the folder containing the AS Reports into this repository and run the command `python filter_AS_folders.py`

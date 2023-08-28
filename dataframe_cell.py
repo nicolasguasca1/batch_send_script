@@ -9,13 +9,13 @@ parser.add_argument('--folder_to_filter', type=str,
 args = parser.parse_args()
 
 content_folder = args.folder_to_filter
-parent_path = os.path.dirname(content_folder)
 
 # List to store records
 data_dict = {}
+directories_above_threshold = []
 quantity_threshold = 1000
-# directory_name = os.path.basename(content_folder)
-directory_name = os.path.abspath(content_folder)
+directory_name = os.path.basename(content_folder)
+# directory_name = os.path.abspath(content_folder) 
 output_compiled_directory = f"{directory_name}_Compiled"
 # os.makedirs(output_compiled_directory, exist_ok=True)
 # EXPERIMENT________________________________________________
@@ -57,7 +57,7 @@ for root, _, files in os.walk(content_folder):
             # Write the concatenated DataFrame to a CSV file
             result_df.to_csv(output_csv_path, index=False)
     if directory_data:
-        data_dict[directory_name] = directory_data
+        data_dict[root] = directory_data
 
 
 # Save the records to a JSON file in valid JSON format
@@ -65,7 +65,6 @@ output_file = 'filtered_cell_records.json'
 with open(output_file, 'w') as json_file:
     json.dump(data_dict, json_file, indent=4)
 
-print(f"Files path is '{files}'")
 print(f"Filtered records saved to '{output_file}'")
 print(
     f"Enterprise folder filtered records saved to '{output_compiled_directory}'")
