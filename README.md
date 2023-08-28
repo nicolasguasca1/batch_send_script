@@ -103,7 +103,17 @@ After the `config.py` has been set up, email lists have been added to the `email
 
 <!-- STEP BY STEP TO MODIFY THE FOLDERS -->
 
-1. Paste the folder containing the AS Reports into this repository and run the command `python filter_AS_folders.py`
+1. Paste the folder containing the AS Reports into this repository and run the command `python dataframe_cell.py --folder_to_filter [ABS_PATH_TO_THE_FOLDER]`
+
+2. Make sure the amount below and above match the number of folders analized in total
+
+3. Copy directories_above_1000/below_1000 and populate a google sheet with the email addresses you will send to based on the report that uses the EntID of the company. Use the instructions available on the example sheet: https://docs.google.com/spreadsheets/d/1sGvyJ9ws1H3yTtUmVO9s14pXcGflb1pAUuKxYRi_EfA/edit#gid=0
+
+4. When the sheet has been normalized from N/A and NOVALUES cells, export a CSV of the entire list like the 'To Export (ABOVE)/(BELOW)' tabs show in the google sheet and put the files in this directory.
+
+5. Remove the additional commas and the first line on each csv so the script grabs the emails accurately
+
+6. Mkae a test sending an above and a below email to two different email addresses
 
 <!-- STEP BY STEP TO SEND THE EMAILS -->
 
@@ -111,14 +121,14 @@ After the `config.py` has been set up, email lists have been added to the `email
 
 2.Populate a google sheet with the email addresses you will send to based on the report that uses the EntID of the company. Use this an an example: https://docs.google.com/spreadsheets/d/1sGvyJ9ws1H3yTtUmVO9s14pXcGflb1pAUuKxYRi_EfA/edit#gid=0
 
-3. When the sheet has been normalized from N/A and NOVALUES cells, export a CSV of the entire list like the 'To Export' tab shows in the google sheet and put the file in this directory.
-
 4. Run the following command
 
 ```python
 conda activate gmailAPI                                                                                                                ─╯
-python3 send_emails.py --attachment_suffix <PUT HERE THE path OF THE DIRECTORY CONTAINING ALL THE AS REPORTS> --csv_file_path <PUT HERE THE NAME OF THE CSV FILE YOU IMPORTED INTO THE DIRECTORY>
+python3 send_emails.py --attachment_suffix <PUT HERE THE path OF THE DIRECTORY CONTAINING ALL THE AS REPORTS> --csv_file_path <PUT HERE THE NAME OF THE CSV FILES YOU IMPORTED INTO THE DIRECTORY>
 ```
+
+Example:
 
 ````conda activate gmailAPI                                                                                   ─╯
 python3 send_emails.py --folder_attachments /Users/nicolasguascasantamaria/Desktop/RevAPIS/extRepo/gmailAPI/AS_May_Jun --csv_file_path Matched_emails_copy.csv```

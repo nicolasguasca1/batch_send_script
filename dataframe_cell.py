@@ -13,6 +13,9 @@ content_folder = args.folder_to_filter
 # List to store records
 data_dict = {}
 directories_above_threshold = []
+directories_below_threshold = []
+directories_above_threshold_count = 0
+directories_below_threshold_count = 0
 quantity_threshold = 1000
 directory_name = os.path.basename(content_folder)
 # directory_name = os.path.abspath(content_folder) 
@@ -35,9 +38,7 @@ for root, _, files in os.walk(content_folder):
                 filtered_rows = df[df['Quantity'] >= quantity_threshold]
                 if filtered_rows is not None:
                     filtered_dfs.append(filtered_rows)
-                    
                 file_data = []
-
                 for index, row in filtered_rows.iterrows():
                     record = {
                         # Assuming 'ISRC' is the column name
@@ -58,6 +59,19 @@ for root, _, files in os.walk(content_folder):
             result_df.to_csv(output_csv_path, index=False)
     if directory_data:
         data_dict[root] = directory_data
+        # if os.path.basename(root) not in directories_above_threshold:
+        directories_above_threshold_count += 1
+        directories_above_threshold.append(os.path.basename(root))
+    else:
+        if os.path.basename(root) != directory_name:
+            directories_below_threshold_count += 1
+            directories_below_threshold.append(os.path.basename(root))
+    with open('directories_above_1000.txt', 'w') as dir_file:
+        for dir_name in directories_above_threshold:
+            dir_file.write(f"{dir_name}\n")
+    with open('directories_below_1000.txt', 'w') as dir_file:
+        for dir_name in directories_below_threshold:
+            dir_file.write(f"{dir_name}\n")
 
 
 # Save the records to a JSON file in valid JSON format
@@ -66,8 +80,12 @@ with open(output_file, 'w') as json_file:
     json.dump(data_dict, json_file, indent=4)
 
 print(f"Filtered records saved to '{output_file}'")
-print(
-    f"Enterprise folder filtered records saved to '{output_compiled_directory}'")
+print("Directories with CSV files where 'Quantity' is above 1000:",
+     directories_above_threshold_count)
+print("Directories with CSV files where 'Quantity' is below 1000:",
+     directories_below_threshold_count)
+
+
 
 
 # EXPERIMENT________________________________________________
