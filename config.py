@@ -20,19 +20,19 @@ txt_message_above = '''<!DOCTYPE html >
 
         <p>Dear Customer,</p>
 
-        <p><strong>August 28, 2023</strong></p>
+        <p><strong>August 30, 2023</strong></p>
 
-        <p>Please find attached your most recent Suspected Artificial Streaming claims report. This report originates from Spotify and identifies the suspected artificial streams from your distributed catalog. DSPs send these monthly reports to explain royalties they are withholding, and to ensure you are aware of what has been distributed under your catalog, and to make us aware as your distribution partner.</p>
+        <p>Please find attached your most recent Suspected Artificial Streaming claims report. This report originates from Spotify and identifies the suspected artificial streams from your distributed catalog. DSPs send these monthly reports to explain royalties they are withholding, to ensure you are aware of what has been distributed under your catalog, and to make us aware as your distribution partner.</p>
 
-        <p>Review the attached suspected Artificial Streaming report and check our guide on <a href="https://helpdesk.revelator.com/support/solutions/articles/69000826948-how-to-manage-and-avoid-artificial-streaming" target="blank">How to Manage Artificial Streaming</a> to understand if you need to take further action on the assets listed.</p>
+        <p>We have included a file named <em>Rows_Above_1000</em> which contains all the lines that are concerning and require your immediate action among the reports contained within the attachment. </p>
 
-        <p>If none of your assets have surpassed the 1,000 artificial streams threshold, you are not being asked to take further action as your account is not at risk in any way.</p>
+        <p>If you have surpassed 1,000 on any single track, we urge you to enforce a more rigorous inspection process, to investigate, review, target and stop any actions that are triggering the activity found on the tracks in question.</p>
 
-        <p>If you have surpassed 1,000 on any single track, we urge you to enforce a rigorous inspection process on all tracks you distribute, to investigate and review the tracks in question, and to thoroughly read and review <a href="https://www.revelator.com/anti-fraud-policy" target="blank">Revelator\'s Anti Fraud Policy</a>.</p>
+        <p>Check our guide on <a href="https://helpdesk.revelator.com/support/solutions/articles/69000826948-how-to-manage-and-avoid-artificial-streaming" target="blank">How to Manage Artificial Streaming</a> for additional information.</p>
 
         <p>Distributing Artificial Streaming is regarded as fraud by our DSP partners and poses a risk to all of us. Understanding your responsibilities in combating music fraud as a Revelator customer is vital.</p>
 
-        <p>Do you require our assistance in creating or implementing an anti-fraud policy? Are you in need of help in tracking inspections? If so, please <a href="https://pages.revelator.com/meetings/nicolas-guasca/customer-success" target="blank">book a time with me here</a>.Let's discuss how we can offer support.</p>
+        <p>Do you require our assistance in creating or implementing an anti-fraud policy? Are you in need of help in tracking inspections? If so, please <a href="https://pages.revelator.com/meetings/nicolas-guasca/customer-success" target="blank">book a time with me here</a> and let's discuss how we can offer support.</p>
 
         <p> Appreciate your attention to this matter.</p>
 
@@ -75,17 +75,17 @@ txt_message_below = '''<!DOCTYPE html >
 
         <p>Dear Partner,</p>
 
-        <p><strong>August 11, 2023</strong></p>
+        <p><strong>August 30, 2023</strong></p>
 
         <p>Attached is the most recent Suspected Artificial Streaming report we received from Spotify regarding your content. Spotify sends these reports to explain royalties they withhold and to provide you with an opportunity to identify any growing momentum of fraudulent activity within your catalog.</p>
 
-        <p><strong>Important:</strong> Receiving this email doesn’t necessarily indicate any fraud in your account! We forward these reports exactly as received from the DSP, so you can review them, take prompt action if needed, and prevent potential permanent content removal in the future.</p>
+        <p><strong>Important: Receiving this email doesn’t indicate fraud in your account!</strong></p>
 
-        <p>Please review the attached suspected report and check our guide on <a href="https://helpdesk.revelator.com/support/solutions/articles/69000826948-how-to-manage-and-avoid-artificial-streaming" target="blank">How to Manage Artificial Streaming</a> to understand if you need to take further action on the assets listed.</p>
+        <p>We forward these reports exactly as received from the DSP, so you can review them, take prompt action if needed, and prevent potential permanent content removal in the future.</p>
 
-        <p><strong>If none of your assets have surpassed the 1,000 artificial streams threshold, you are not being asked to take further action as your account is not at risk in any way.</strong></p>
+        <p>The attached suspected report is for informational purposes. Feel free to check our guide on <a href="https://helpdesk.revelator.com/support/solutions/articles/69000826948-how-to-manage-and-avoid-artificial-streaming" target="blank">How to Manage Artificial Streaming</a> to understand typical warning signs on your assets.</p>
 
-        <p>If you have surpassed 1,000 on any single track, we urge you to enforce a rigorous inspection process on all tracks you distribute, to investigate and review the tracks in question, and to thoroughly read and review <a href="https://www.revelator.com/anti-fraud-policy" target="blank">Revelator\'s Anti Fraud Policy</a>.</p>
+        <p>As none of your assets have surpassed the 1,000 artificial streams threshold, you are not being asked by Revelator to take further action, and your account is not at risk in any way.</p>
 
         <p>Should you have any other questions regarding Artificial Streams, don’t hesitate to write to us at infringement@revelator.com. We’re always available to assist and advise.</p>
 
@@ -116,7 +116,6 @@ txt_message_below = '''<!DOCTYPE html >
 </body >
 </html >
 '''
-
 
 
 # gmail address
