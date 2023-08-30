@@ -101,37 +101,34 @@ Remove the toy file1.png and file2.jpg files before sending your email.
 
 After the `config.py` has been set up, email lists have been added to the `emails/*.txt` folder, and attachments (optional) have been added to the `attachment/*` folder, the main script can be run. An example of the script call can be found below. When running this from the user command line, a broswer window should open for authentication to give the app access to send emails from your gmail account. If it doesn't happen automatically, you can copy the link that will be printed to the console. Additionally, after the email list is printed out, users will need to confirm they want to go ahead with sending the email by typing "Y" into the console when prompted. If you type "n" the script will exit and no emails will send. If you type in anything else, you will be re-prompted to type in either "Y" or "n".
 
-<!-- STEP BY STEP TO MODIFY THE FOLDERS -->
+<!-- STEP BY STEP TO MODIFY THE FOLDERS AND SEND EMAILS -->
 
 1. Paste the folder containing the AS Reports into this repository and run the command `python dataframe_cell.py --folder_to_filter [ABS_PATH_TO_THE_FOLDER]`
 
 2. Make sure the amount below and above match the number of folders analized in total
 
-3. Copy directories_above_1000/below_1000 and populate a google sheet with the email addresses you will send to based on the report that uses the EntID of the company. Use the instructions available on the example sheet: https://docs.google.com/spreadsheets/d/1sGvyJ9ws1H3yTtUmVO9s14pXcGflb1pAUuKxYRi_EfA/edit#gid=0
+3. Copy directories_above_1000.txt/below_1000.txt and populate a google sheet with the email addresses you will send to based on the report that uses the EntID of the company. Use the instructions available on the example sheet: https://docs.google.com/spreadsheets/d/1sGvyJ9ws1H3yTtUmVO9s14pXcGflb1pAUuKxYRi_EfA/edit#gid=0
 
-4. When the sheet has been normalized from N/A and NOVALUES cells, export a CSV of the entire list like the 'To Export (ABOVE)/(BELOW)' tabs show in the google sheet and put the files in this directory.
+4. When the sheet has been normalized from N/A and NOVALUES cells, export a CSV of the entire list like the 'To Export_ABOVE/BELOW' tabs show in the google sheet and put the files in this directory.
 
 5. Remove the additional commas and the first line on each csv so the script grabs the emails accurately
 
-6. Mkae a test sending an above and a below email to two different email addresses
+6. Changes the contents of the text to send as message as well as the recipients in CC and subject.
+
+7. Make a test sending an above and a below email to two different sample email addresses to see the attachments went well
+
+8. Run the script with:
+
+`python3 send_emails_above.py --folder_attachments /Users/nicolasguascasantamaria/Desktop/RevAPIS/extRepo/gmailAPI/attachments/<NAME_OF_THE_FOLDER> --csv_file_path To_Export_ABOVE.csv`
+
+`python3 send_emails_below.py --folder_attachments /Users/nicolasguascasantamaria/Desktop/RevAPIS/extRepo/gmailAPI/attachments/<NAME_OF_THE_FOLDER> --csv_file_path To_Export_BELOW.csv`
+
+9. Make a copy of the logged activity after running the script and save it under Logs folder with the convention existing already
 
 <!-- STEP BY STEP TO SEND THE EMAILS -->
 
-1. Paste the folder containing the AS Reports into this repository and run the command `python filter_AS_folders.py`
+1. Stop sending emails to clients with 0 rows. There is already an additional script ruling these out.
 
-2.Populate a google sheet with the email addresses you will send to based on the report that uses the EntID of the company. Use this an an example: https://docs.google.com/spreadsheets/d/1sGvyJ9ws1H3yTtUmVO9s14pXcGflb1pAUuKxYRi_EfA/edit#gid=0
+2. Save the compiled folder into a drive link that we can share instead of the file itself
 
-4. Run the following command
-
-```python
-conda activate gmailAPI                                                                                                                ─╯
-python3 send_emails.py --attachment_suffix <PUT HERE THE path OF THE DIRECTORY CONTAINING ALL THE AS REPORTS> --csv_file_path <PUT HERE THE NAME OF THE CSV FILES YOU IMPORTED INTO THE DIRECTORY>
-```
-
-Example:
-
-````conda activate gmailAPI                                                                                   ─╯
-python3 send_emails.py --folder_attachments /Users/nicolasguascasantamaria/Desktop/RevAPIS/extRepo/gmailAPI/AS_May_Jun --csv_file_path Matched_emails_copy.csv```
-````
-
-5. Make a copy of the logged activity after running the script and save it under logs.txt file
+3. Work also on the sum per ISRC
