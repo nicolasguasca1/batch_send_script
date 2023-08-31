@@ -131,4 +131,6 @@ After the `config.py` has been set up, email lists have been added to the `email
 
 2. Save the compiled folder into a drive link that we can share instead of the file itself
 
-3. Work also on the sum per ISRC
+3. Test sending with 'bcc' to 420184@bcc.hubspot.com
+
+4. Work also on the sum per ISRC
