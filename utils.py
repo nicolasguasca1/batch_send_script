@@ -7,9 +7,9 @@ import array
 import os
 import sys
 import io
-import cv2
-import numpy as np
-import pandas as pd
+# import cv2
+# import numpy as np
+# import pandas as pd
 import email.message
 import googleapiclient.discovery
 
@@ -65,7 +65,7 @@ def get_email_from_(identifier, folder_path):
     return None  # Identifier not found
 
 
-def create_message(message: str, email_from: str, email_to: str, subject: str, folder_attachments: str, attachment_suffix: str or list, max_image_size: int = 1024) -> email.message:
+def create_message(message: str, email_from: str, email_to: str, subject: str, max_image_size: int = 1024) -> email.message:
     """
     Use the email.message.EmailMessage class to create a message and return its raw base64 encoded version in a dictionary
 
@@ -98,8 +98,8 @@ def create_message(message: str, email_from: str, email_to: str, subject: str, f
         email_to, str), f"Email_to should be a string, not {type(email_to)}"
     assert isinstance(
         subject, str), f"Subject should be a string, not {type(subject)}"
-    assert os.path.exists(
-        folder_attachments), f"Folder {folder_attachments} does not exist"
+    # assert os.path.exists(
+    #     folder_attachments), f"Folder {folder_attachments} does not exist"
     # attachment_suffix = str2list(attachment_suffix)
     # assert isinstance(
     #     attachment_suffix, list), f"Attachment_suffix should be a list, not {type(attachment_suffix)}"
@@ -109,7 +109,7 @@ def create_message(message: str, email_from: str, email_to: str, subject: str, f
     msg['To'] = email_to
     msg['From'] = 'Nicolás Guasca'
     msg['Subject'] = subject
-    msg['Cc'] = 'naomi@revelator.com'
+    # msg['Cc'] = ''
 
     # _____________________________________________________________________________
 
@@ -122,29 +122,29 @@ def create_message(message: str, email_from: str, email_to: str, subject: str, f
 
     # Add the attachments
     # for folder in folders:
-    folder_name = folder_attachments+'/'+attachment_suffix
-    # folder_name = attachment_suffix
-    zip_path = os.path.join(temp_dir, f"{folder_name}.zip")
+    # folder_name = folder_attachments+'/'+attachment_suffix
+    # # folder_name = attachment_suffix
+    # zip_path = os.path.join(temp_dir, f"{folder_name}.zip")
 
-    # Check directory permissions
-    permissions = os.access(folder_name, os.W_OK)
-    print(f"Directory '{folder_name}' has write permission: {permissions}")
+    # # Check directory permissions
+    # permissions = os.access(folder_name, os.W_OK)
+    # print(f"Directory '{folder_name}' has write permission: {permissions}")
 
-    with io.BytesIO() as zip_buffer:
-        with zipfile.ZipFile(zip_buffer, "w", zipfile.ZIP_DEFLATED) as zip_file:
-            for file in os.listdir(folder_name):
-                if file.endswith(".csv"):
-                    file_path = os.path.join(folder_name, file)
-                    relative_path = os.path.relpath(file_path, folder_name)
-                    zip_file.write(file_path, arcname=relative_path)
+    # with io.BytesIO() as zip_buffer:
+    #     with zipfile.ZipFile(zip_buffer, "w", zipfile.ZIP_DEFLATED) as zip_file:
+    #         for file in os.listdir(folder_name):
+    #             if file.endswith(".csv"):
+    #                 file_path = os.path.join(folder_name, file)
+    #                 relative_path = os.path.relpath(file_path, folder_name)
+    #                 zip_file.write(file_path, arcname=relative_path)
 
-        # Get the bytes of the zip file
-        zip_data = zip_buffer.getvalue()
+    #     # Get the bytes of the zip file
+    #     zip_data = zip_buffer.getvalue()
     # MOMENTANOUESLY
 
     # Add the attachment to the email
-    msg.add_attachment(zip_data, maintype='application',
-                       subtype='zip', filename=f"{attachment_suffix}.zip")
+    # msg.add_attachment(zip_data, maintype='application',
+    #                    subtype='zip', filename=f"{attachment_suffix}.zip")
 
     # Clean up the temporary directory
     shutil.rmtree(temp_dir)
@@ -247,36 +247,36 @@ def is_file_image(path: str) -> bool:
     return check
 
 
-def image2bytes(path: str, max_size: int = 1024) -> bytes:
-    """
-    Convert an image to bytes
+# def image2bytes(path: str, max_size: int = 1024) -> bytes:
+#     """
+#     Convert an image to bytes
 
-    Parameters
-    ----------
-    path : str
-        Path to the image
-    max_size : int, optional
-        Maximum size of the image, by default 1024
+#     Parameters
+#     ----------
+#     path : str
+#         Path to the image
+#     max_size : int, optional
+#         Maximum size of the image, by default 1024
 
-    Returns
-    -------
-    bytes
-        Bytes of the image
-    """
-    # Check the image exists
-    assert os.path.exists(path), f"{path} does not exist"
-    # Check the image is an image
-    assert is_file_image(path), f"{path} is not an image"
-    # Read the image
-    img = cv2.imread(path, cv2.IMREAD_UNCHANGED)
-    # Resize the image if it exceeds the maximum size
-    dim_max = np.argmax(img.shape[:2])
-    pixels_max = img.shape[dim_max]
-    if pixels_max > max_size:
-        scale = max_size / pixels_max
-        img = cv2.resize(img, None, fx=scale, fy=scale)
-    # Convert to bytes
-    suffix = path.split('.')[-1]
-    raw = cv2.imencode(f'.{suffix}', img)[1].tobytes()
-    assert isinstance(raw, bytes), f"Data should be bytes, not {type(raw)}"
-    return raw
+#     Returns
+#     -------
+#     bytes
+#         Bytes of the image
+#     """
+#     # Check the image exists
+#     assert os.path.exists(path), f"{path} does not exist"
+#     # Check the image is an image
+#     assert is_file_image(path), f"{path} is not an image"
+#     # Read the image
+#     img = cv2.imread(path, cv2.IMREAD_UNCHANGED)
+#     # Resize the image if it exceeds the maximum size
+#     dim_max = np.argmax(img.shape[:2])
+#     pixels_max = img.shape[dim_max]
+#     if pixels_max > max_size:
+#         scale = max_size / pixels_max
+#         img = cv2.resize(img, None, fx=scale, fy=scale)
+#     # Convert to bytes
+#     suffix = path.split('.')[-1]
+#     raw = cv2.imencode(f'.{suffix}', img)[1].tobytes()
+#     assert isinstance(raw, bytes), f"Data should be bytes, not {type(raw)}"
+#     return raw
