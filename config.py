@@ -17,7 +17,7 @@ txt_message_above = '''<!DOCTYPE html >
     </style >
 </head >
 <body >
-
+    <div>
         <p>Dear Customer,</p>
 
         <p><strong>August 30, 2023</strong></p>
@@ -72,7 +72,7 @@ txt_message_below = '''<!DOCTYPE html >
     </style >
 </head >
 <body >
-
+    <div>
         <p>Dear Partner,</p>
 
         <p><strong>August 30, 2023</strong></p>
@@ -124,21 +124,24 @@ txt_message_royalties_delayed = '''<!DOCTYPE html >
       body {{
            font-family: Arial, sans-serif
            }}
+      p {{
+        margin-bottom: 10px; /* Adds margin below each <p> element */
+    }}
     </style >
 </head >
 <body >
-
-        <p>Dear {{company_name}},</p>
+    <div>
+        <p>Hello {company_name} team,</p><br>
 
         <p>As we value our partnership and strive to maintain transparency in all our interactions, I wanted to inform you that your monthly royalty statement from Revelator will be slightly delayed.</p>
-
+        
         <p>The reason for this delay is that we are currently conducting a thorough platform review of all content, including filtering out fraudulent releases and artificial streaming activities and your account requires manual inspection and review. This additional review is essential for the long-term success of our collaboration.</p>
 
         <p>We're working hard to make our review process faster and to ensure that your payment has the shortest delay possible. Your active participation in thorough inspection and catalog review will help ensure this process can be faster in the future.</p>
 
         <p>We'll let you know as soon as the statements are approved and ready for your review.</p>
 
-        <p>Thanks for your continued trust and partnership. If you have any questions or concerns, please don’t hesitate to reach out to us. We're here to assist as always.</p>
+        <p>Thanks for your continued trust and partnership. If you have any questions or concerns, please don’t hesitate to reach out to us. We're here to assist as always.</p><br>
 
         <p> Best regards,</p>
 

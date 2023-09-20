@@ -103,29 +103,17 @@ After the `config.py` has been set up, email lists have been added to the `email
 
 <!-- STEP BY STEP TO MODIFY THE FOLDERS AND SEND EMAILS -->
 
-1. Paste the folder containing the AS Reports into this repository and run the command `python dataframe_cell.py --folder_to_filter [ABS_PATH_TO_THE_FOLDER]`
+1. Populate a sheet like the following with emails addresses and company names for the companies you want to reach: https://docs.google.com/spreadsheets/d/1Zuoc716aRFNVdy3OdKO_cw2-7f_VZtgV1pr074VIwxI/edit?usp=sharing
 
-2. Make sure the amount below and above match the number of folders analized in total
+2. When the sheet has been normalized from N/A and NOVALUES cells, export a CSV of the entire list like the 'To Export' tabs show in the google sheet and put the files in this directory.
 
-3. Copy directories_above_1000.txt/below_1000.txt and populate a google sheet with the email addresses you will send to based on the report that uses the EntID of the company. Use the instructions available on the example sheet: https://docs.google.com/spreadsheets/d/1sGvyJ9ws1H3yTtUmVO9s14pXcGflb1pAUuKxYRi_EfA/edit#gid=0
+3. Remove the additional commas and the first line on each csv so the script grabs the emails accurately
 
-4. When the sheet has been normalized from N/A and NOVALUES cells, export a CSV of the entire list like the 'To Export_ABOVE/BELOW' tabs show in the google sheet and put the files in this directory.
+4. Change the contents of the text to send as message as well as the recipients in CC and subject.
 
-5. Remove the additional commas and the first line on each csv so the script grabs the emails accurately
+5. Make a test sending an above and a below email to two different sample email addresses to see the attachments went well
 
-6. Change the contents of the text to send as message as well as the recipients in CC and subject.
-
-7. Make a test sending an above and a below email to two different sample email addresses to see the attachments went well
-
-8. To send AS reports emails, run the script with:
-
-`python3 send_emails_above.py --folder_attachments /Users/nicolasguascasantamaria/Desktop/RevAPIS/extRepo/gmailAPI/attachments/<NAME_OF_THE_FOLDER> --csv_file_path To_Export_ABOVE.csv`
-
-`python3 send_emails_below.py --folder_attachments /Users/nicolasguascasantamaria/Desktop/RevAPIS/extRepo/gmailAPI/attachments/<NAME_OF_THE_FOLDER> --csv_file_path To_Export_BELOW.csv`
-
-OR
-
-To send Simple template emails (e.g delayed rr reports), run the script with:
+6. To send Simple template emails (e.g delayed rr reports), run the script with:
 
 `python3 send_simple_template_email.py --csv_file_path possible_delays_sep_2023_royalty_run_to_export.csv`
 

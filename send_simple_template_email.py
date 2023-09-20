@@ -97,8 +97,8 @@ if __name__ == '__main__':
             # email = ""
             if len(row) == 2:
                 identifier, email = row
-                print(f'Identifier is {identifier}')
-                print(f'Email is {email}')
+                print(f'Company name is: {identifier}')
+                print(f'Email is: {email}')
                 email_user_mapping2[identifier] = email
                 # -- (ii) Create the message -- #
                 message_formatted = txt_message_royalties_delayed.format(
@@ -110,7 +110,6 @@ if __name__ == '__main__':
                 del message['To']
                 message['To'] = {email}
                 print(f'Sending to {email}')
-                print(f'Sending attachment number {identifier}')
                 # Convert the message to a raw byte
                 raw_message = message2bytes(message)
                 # Send the message
