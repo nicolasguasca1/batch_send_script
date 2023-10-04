@@ -130,7 +130,7 @@ print("Directories with CSV files where 'Quantity' is above 1000:",
       directories_above_threshold_count)
 print("Directories with CSV files where 'Quantity' is below 1000:",
       directories_below_threshold_count)
-print("The top five directories with the most AS with the scheme ['company',total_sum] are the following:",
+print("The top five directories with the most AS with the scheme ['EntID',total_sum] are the following:",
       top_5_arrays)
 
 # print('File ID on Drive:', uploaded_file['id'])

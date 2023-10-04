@@ -9,7 +9,7 @@ There are four files in this repo that will need to be updated by the user:
 - `credenciales.json` (see (1))
 - `config.py` (see (3))
 - `emails/example1.txt` (see (4))
-- `attachments/file1.png` (see (5))
+- `attachments/` (see (5))
 
 The ones found in this repo are meant for demonstrative purposes only. An example of the structure of this repo is shown below, when there are two attachments files (file1.png, file2.jpg) and two email lists (list1.txt, list2.txt):
 
@@ -31,7 +31,7 @@ The ones found in this repo are meant for demonstrative purposes only. An exampl
 └── utils.py
 ```
 
-To sure you don't commit any private changes to your branch, you'll probably want to stop tracking the template files:
+To ensure you don't commit any private changes to your branch, you'll probably want to stop tracking the template files:
 
 ```
 git update-index --skip-worktree credenciales.json
@@ -113,7 +113,7 @@ After the `config.py` has been set up, email lists have been added to the `email
 
 5. Remove the additional commas and the first line on each csv so the script grabs the emails accurately
 
-6. Changes the contents of the text to send as message as well as the recipients in CC and subject.
+6. Change the contents of the text to send as message as well as the recipients in CC and subject available in `config.py` and in `utils.py`.
 
 7. Make a test sending an above and a below email to two different sample email addresses to see the attachments went well
 

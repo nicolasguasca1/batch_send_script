@@ -20,7 +20,7 @@ txt_message_above = '''<!DOCTYPE html >
 
         <p>Dear Customer,</p>
 
-        <p><strong>August 30, 2023</strong></p>
+        <p><strong>October 4, 2023</strong></p>
 
         <p>Please find attached your most recent Suspected Artificial Streaming claims report. This report originates from Spotify and identifies the suspected artificial streams from your distributed catalog. DSPs send these monthly reports to explain royalties they are withholding, to ensure you are aware of what has been distributed under your catalog, and to make us aware as your distribution partner.</p>
 
@@ -75,7 +75,7 @@ txt_message_below = '''<!DOCTYPE html >
 
         <p>Dear Partner,</p>
 
-        <p><strong>August 30, 2023</strong></p>
+        <p><strong>October 4, 2023</strong></p>
 
         <p>Attached is the most recent Suspected Artificial Streaming report we received from Spotify regarding your content. Spotify sends these reports to explain royalties they withhold and to provide you with an opportunity to identify any growing momentum of fraudulent activity within your catalog.</p>
 
