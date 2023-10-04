@@ -8,7 +8,7 @@ python3 send_emails.py --attachment_suffix png jpg --email_suffix txt --max_imag
 
 # Arguments to specify the attachment and email suffix, as well as the maximum image size
 from utils import get_gmail_service, create_message, message2bytes, press_Yn_to_continue
-from config import txt_message_below, gmail_address, subject_line_below, scopes, credenciales, port, max_emails
+from config import txt_message_royalties_delayed, gmail_address, subject_line_delayed_report, scopes, credenciales, port, max_emails
 from time import sleep
 
 from google.auth.transport.requests import Request
@@ -23,10 +23,8 @@ import csv
 
 import argparse
 parser = argparse.ArgumentParser()
-parser.add_argument('--folder_attachments', type=str,
-                    help='Folder name of the attachments to send')
-# parser.add_argument('--email_suffix', nargs='+', default='txt',
-#                     help='Suffix of the email to send (default: "txt")')
+parser.add_argument('--email_suffix', nargs='+', default='txt',
+                    help='Suffix of the email to send (default: "txt")')
 parser.add_argument('--max_image_size', type=int, default=1024,
                     help='Maximum size of the image to send')
 parser.add_argument("--csv_file_path", type=str,
@@ -95,22 +93,23 @@ if __name__ == '__main__':
     with open(args.csv_file_path, 'r') as csv_file:
         csv_reader = csv.reader(csv_file)
         for i, row in enumerate(csv_reader):
-            # identifier = ""
+            identifier = ""
             # email = ""
             if len(row) == 2:
                 identifier, email = row
-                print(f'Identifier is {identifier}')
-                print(f'Email is {email}')
+                print(f'Company name is: {identifier}')
+                print(f'Email is: {email}')
                 email_user_mapping2[identifier] = email
                 # -- (ii) Create the message -- #
+                message_formatted = txt_message_royalties_delayed.format(
+                    company_name=identifier)
 
-                message = create_message(message=txt_message_below, email_from=gmail_address, email_to=gmail_address, subject=subject_line_below,
-                                         folder_attachments=args.folder_attachments, attachment_suffix=identifier, max_image_size=args.max_image_size)
+                message = create_message(message=message_formatted, email_from=gmail_address, email_to=gmail_address,
+                                         subject=subject_line_delayed_report, max_image_size=args.max_image_size)
                 # Update the recipient email
                 del message['To']
                 message['To'] = {email}
                 print(f'Sending to {email}')
-                print(f'Sending attachment number {identifier}')
                 # Convert the message to a raw byte
                 raw_message = message2bytes(message)
                 # Send the message
