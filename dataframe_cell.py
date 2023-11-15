@@ -2,12 +2,12 @@ import argparse
 import os
 import pandas as pd
 import json
-import csv
+# import csv
 
-import pickle
-from googleapiclient.discovery import build
-from googleapiclient.http import MediaFileUpload
-from google_auth_oauthlib.flow import InstalledAppFlow
+# import pickle
+# from googleapiclient.discovery import build
+# from googleapiclient.http import MediaFileUpload
+# from google_auth_oauthlib.flow import InstalledAppFlow
 
 # Path to your credentials JSON file downloaded from the Google Cloud Console
 credentials_path = '/Users/nicolasguascasantamaria/Desktop/RevAPIS/extRepo/gmailAPI/credenciales_drive.json'
@@ -105,7 +105,8 @@ for root, _, files in os.walk(content_folder):
 
 sorted_concerning = sorted(
     quantities_concerning.items(), key=lambda x: x[1], reverse=True)
-top_5_arrays = sorted_concerning[:5]
+# THE FOLLOWING NEED TO BE ADJUSTED TO THE NUMBER OF COMPANIES WITH ALARMING NUMBERS
+top_arrays = sorted_concerning[:directories_above_threshold_count]
 # Save the records to a JSON file in valid JSON format
 output_file = 'filtered_cell_records.json'
 output_file_sum = 'concerning_records_sum.csv'
@@ -130,7 +131,7 @@ print("Directories with CSV files where 'Quantity' is above 1000:",
       directories_above_threshold_count)
 print("Directories with CSV files where 'Quantity' is below 1000:",
       directories_below_threshold_count)
-print("The top five directories with the most AS with the scheme ['EntID',total_sum] are the following:",
-      top_5_arrays)
+print("The top directories with the most AS with the scheme ['EntID',total_sum] are the following:",
+      top_arrays)
 
 # print('File ID on Drive:', uploaded_file['id'])
