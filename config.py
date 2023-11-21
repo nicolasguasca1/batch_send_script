@@ -175,9 +175,14 @@ txt_message_royalties_delayed = '''<!DOCTYPE html >
 # gmail address
 gmail_address = 'Nicolás Guasca'
 
-# Subject line
+# Subject lines
 subject_line_delayed_report = 'Subject: Notice of Delay Regarding your September Statement'
 
+subject_line_above = 'Spotify AS Report August: Action Required'
+
+subject_line_below = 'Spotify AS Report August: No Action Required'
+
+subject_line_all = 'Spotify AS Report September: Action Required'
 
 # The gmail API can be used to send emails
 scopes = ['https://www.googleapis.com/auth/gmail.send']

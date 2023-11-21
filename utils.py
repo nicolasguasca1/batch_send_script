@@ -23,6 +23,8 @@ import zipfile
 from base64 import urlsafe_b64encode
 from email.message import EmailMessage
 from google_auth_oauthlib.flow import InstalledAppFlow
+from typing import List, Optional
+
 
 
 def get_gmail_service(scopes: str or list, credentials: str, port: int = 0) -> googleapiclient.discovery:
@@ -98,8 +100,53 @@ def create_message(message: str, email_from: str, email_to: str, subject: str, m
         email_to, str), f"Email_to should be a string, not {type(email_to)}"
     assert isinstance(
         subject, str), f"Subject should be a string, not {type(subject)}"
-    # assert os.path.exists(
-    #     folder_attachments), f"Folder {folder_attachments} does not exist"
+    msg = EmailMessage()
+    msg.set_content(message, subtype='html')
+    msg['To'] = email_to
+    msg['From'] = 'Nicolás Guasca'
+    msg['Subject'] = subject
+    msg['Cc'] = 'nicolas.guasca@gmail.com', 'nicolas.g@revelator.com'
+    msg['Bcc'] = '420184@bcc.hubspot.com'
+    temp_dir = tempfile.mkdtemp()
+    # Clean up the temporary directory
+    shutil.rmtree(temp_dir)
+    return msg
+
+def create_message2(message: str, email_from: str, email_to: str, subject: str, folder_attachments: str, attachment_suffix: str or list, max_image_size: int = 1024) -> email.message:
+    """
+    Use the email.message.EmailMessage class to create a message and return its raw base64 encoded version in a dictionary
+
+    Parameters
+    ----------
+    message : str
+        Message to send
+    email_from : str
+        Email address to send from
+    email_to : str
+        Email address to send to
+    subject : str
+        Subject line
+    folder_attachments : str
+        Path to the folder containing the attachments
+    attachment_suffix : str or list
+        Suffix of the attachment to send
+
+    Returns
+    -------
+    dict
+        Dictionary with the raw base64 encoded message
+    """
+    # Input checks
+    assert isinstance(
+        message, str), f"Message should be a string, not {type(message)}"
+    assert isinstance(
+        email_from, str), f"Email_from should be a string, not {type(email_from)}"
+    assert isinstance(
+        email_to, str), f"Email_to should be a string, not {type(email_to)}"
+    assert isinstance(
+        subject, str), f"Subject should be a string, not {type(subject)}"
+    assert os.path.exists(
+        folder_attachments), f"Folder {folder_attachments} does not exist"
     # attachment_suffix = str2list(attachment_suffix)
     # assert isinstance(
     #     attachment_suffix, list), f"Attachment_suffix should be a list, not {type(attachment_suffix)}"
@@ -109,27 +156,28 @@ def create_message(message: str, email_from: str, email_to: str, subject: str, m
     msg['To'] = email_to
     msg['From'] = 'Nicolás Guasca'
     msg['Subject'] = subject
-    msg['Cc'] = 'nicolas.guasca@gmail.com', 'nicolas.g@revelator.com'
-    msg['Bcc'] = '420184@bcc.hubspot.com'
+    # msg['Cc'] = 'naomi@revelator.com'
 
-    # _____________________________________________________________________________
+    file_name_to_send = find_files_with_identifier(folder_attachments, attachment_suffix)
 
-    # # Find the folders
-    # folders = find_files_with_suffix(folder_attachments, attachment_suffix)
-    # print(f"Found {len(folders)} folders with suffix {attachment_suffix} in folder {folder_attachments}: {folders}")
+    # # Create a temporary directory to store the zip files
+    # temp_dir = tempfile.mkdtemp()
 
-    # Create a temporary directory to store the zip files
-    temp_dir = tempfile.mkdtemp()
-
-    # Add the attachments
-    # for folder in folders:
+    # # Add the attachments
+    # # for folder in folders:
     # folder_name = folder_attachments+'/'+attachment_suffix
     # # folder_name = attachment_suffix
     # zip_path = os.path.join(temp_dir, f"{folder_name}.zip")
 
-    # # Check directory permissions
-    # permissions = os.access(folder_name, os.W_OK)
-    # print(f"Directory '{folder_name}' has write permission: {permissions}")
+    file_path = os.path.join(folder_attachments, file_name_to_send)
+    # Check directory permissions
+    permissions = os.access(file_path, os.W_OK)
+    print(f"File '{file_name_to_send}' has write permission: {permissions}")
+
+    if permissions:
+
+        with open(file_path, 'rb') as csv_file:
+            msg.add_attachment(csv_file.read(), maintype='text', subtype='csv', filename=file_name_to_send)
 
     # with io.BytesIO() as zip_buffer:
     #     with zipfile.ZipFile(zip_buffer, "w", zipfile.ZIP_DEFLATED) as zip_file:
@@ -141,14 +189,12 @@ def create_message(message: str, email_from: str, email_to: str, subject: str, m
 
     #     # Get the bytes of the zip file
     #     zip_data = zip_buffer.getvalue()
-    # MOMENTANOUESLY
-
-    # Add the attachment to the email
+    # # Add the attachment to the email
     # msg.add_attachment(zip_data, maintype='application',
     #                    subtype='zip', filename=f"{attachment_suffix}.zip")
 
-    # Clean up the temporary directory
-    shutil.rmtree(temp_dir)
+    # # Clean up the temporary directory
+    # shutil.rmtree(temp_dir)
     return msg
 
 
@@ -158,6 +204,30 @@ def message2bytes(msg) -> dict:
     di_msg = {'raw': encoded_msg}
     return di_msg
 
+
+def find_files_with_identifier(directory: str, identifier: str) -> Optional[str]:
+    """
+    Find files within a directory that match a specific identifier.
+
+    Parameters
+    ----------
+    directory : str
+        Path to the directory containing the files
+    identifier : str
+        Identifier to match in the file names
+
+    Returns
+    -------
+    List[str]
+        List of file names that match the identifier
+    """
+    matching_files = [file for file in os.listdir(directory) if file.endswith('.csv') and identifier == file.split('-')[0]]
+
+    if matching_files:
+        return matching_files[0]
+    else:
+        print(f"No CSV file found with identifier '{identifier}'.")
+        return None
 
 def find_files_with_suffix(folder: str, suffix: str or list) -> list:
     """
