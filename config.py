@@ -137,11 +137,25 @@ txt_message_royalties_delayed = '''<!DOCTYPE html >
         
         <p>The reason for this delay is that we are currently conducting a thorough platform review of all content, including filtering out fraudulent releases and artificial streaming activities and your account requires manual inspection and review. This additional review is essential for the long-term success of our collaboration.</p>
 
-        <p>We're working hard to make our review process faster and to ensure that your payment has the shortest delay possible. Your active participation in thorough inspection and catalog review will help ensure this process can be faster in the future.</p>
+        <p>We’re working hard to review your statement as fast as possible. Here is an overview of our process and what to expect:</p>
 
-        <p>We'll let you know as soon as the statements are approved and ready for your review.</p>
+        <p>1. If we identify any problematic assets in your royalty report, we will remove these from your statement so as to approve your statement and issue your payment without further delay.</p>
 
-        <p>Thanks for your continued trust and partnership. If you have any questions or concerns, please don’t hesitate to reach out to us. We're here to assist as always.</p><br>
+        <p>2. In parallel, you will receive a list of each problematic asset indicating the specific issue we’ve identified.</p>
+
+        <p>3. We ask that you review this list and let us know if you agree or disagree with our findings.</p>
+
+        <p>4. We will then review your response and adjust your statement, and issue any additional royalties, as appropriate.</p>
+
+        <p>Please also note:</p>
+
+        <p>-> The approved statement you will receive on your Revenue page will NOT include any of the withheld assets. It can therefore be approved by you without fear that you may be approving royalties which may be fraudulent.</p>
+
+        <p>-> The associated CSV of your statement will, however, include all of the original data so that (once you receive our list of problematic assets) you can also review all the underlying data for the assets we have identified as infringing.</p>
+
+        <p>The ETA for the statements to be available within your platform is 10 business days.</p>
+
+        <p>Thanks for your continued trust and partnership. If you have any questions or concerns, please don’t hesitate to reach out to us. We’re here to assist as always.</p><br>
 
         <p> Best regards,</p>
 
@@ -176,7 +190,7 @@ txt_message_royalties_delayed = '''<!DOCTYPE html >
 gmail_address = 'Nicolás Guasca'
 
 # Subject line
-subject_line_delayed_report = 'Subject: Notice of Delay Regarding your September Statement'
+subject_line_delayed_report = 'Subject: Notice of Delay Regarding your November Statement'
 
 
 # The gmail API can be used to send emails
