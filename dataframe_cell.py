@@ -2,12 +2,6 @@ import argparse
 import os
 import pandas as pd
 import json
-# import csv
-
-# import pickle
-# from googleapiclient.discovery import build
-# from googleapiclient.http import MediaFileUpload
-# from google_auth_oauthlib.flow import InstalledAppFlow
 
 # Path to your credentials JSON file downloaded from the Google Cloud Console
 credentials_path = '/Users/nicolasguascasantamaria/Desktop/RevAPIS/extRepo/gmailAPI/credenciales_drive.json'
@@ -19,28 +13,15 @@ args = parser.parse_args()
 
 content_folder = args.folder_to_filter
 
-# # Create credentials flow and load existing token if available
-# flow = InstalledAppFlow.from_client_secrets_file(
-#     credentials_path, ['https://www.googleapis.com/auth/drive'])
-# if os.path.exists('token.pickle'):
-#     creds = pickle.load(open('token.pickle', 'rb'))
-# else:
-#     creds = flow.run_local_server(port=0)
-
-# # Save the credentials token
-# with open('token.pickle', 'wb') as token:
-#     pickle.dump(creds, token)
-
-# # Create a Google Drive API service
-# service = build('drive', 'v3', credentials=creds)
-
 # List to store records
 data_dict = {}
 directories_above_threshold = []
+entIds_analized = []
 directories_below_threshold = []
 directories_above_threshold_count = 0
 directories_below_threshold_count = 0
 quantity_threshold = 1000
+quantity_threshold_tiktok = 10000
 quantities_concerning = {}
 directory_name = os.path.basename(content_folder)
 output_compiled_directory = f"{directory_name}_Compiled"
@@ -50,36 +31,61 @@ for root, _, files in os.walk(content_folder):
     directory_data = {}
     filtered_dfs = []
     quantity_per_concerning_company = 0
+    entIds_analized.append(os.path.basename(root))
     for file in files:
         filtered_rows = None
+        filtered_rows2 = None
         if file.endswith('.csv'):
             csv_file_path = os.path.join(dir_b_path, file)
             with open(csv_file_path, 'r') as csv_file:
                 quantity_above_per_file = 0
                 df = pd.read_csv(csv_file)
                 # Check for lines where 'Quantity' column is 1000 or more
-
+            if 'Quantity' in df.columns:
                 filtered_rows = df[df['Quantity'] >= quantity_threshold]
                 if filtered_rows is not None:
+                    output_file_compiled = "Spo_Rows_Above_1000.csv"
                     quantity_above_per_file = filtered_rows['Quantity'].sum()
 
                     filtered_dfs.append(filtered_rows)
-                file_data = []
-                for index, row in filtered_rows.iterrows():
-                    record = {
-                        # Assuming 'ISRC' is the column name
-                        'ISRC': row['ISRC'],
-                        'Quantity': row['Quantity']
-                    }
-                    file_data.append(record)
-                if file_data:
-                    directory_data[file] = file_data
-                    quantity_per_concerning_company += quantity_above_per_file
-                # json_concerning = {
-                #     'Total amount':
-                # }
+                    file_data = []
+                    for index, row in filtered_rows.iterrows():
+                        record = {
+                            # Assuming 'ISRC' is the column name
+                            'ISRC': row['ISRC'],
+                            'Quantity': row['Quantity']
+                        }
+                        file_data.append(record)
+                    if file_data:
+                        directory_data[file] = file_data
+                        quantity_per_concerning_company += quantity_above_per_file
+                
+            elif 'Video_views' in df.columns:
+                # ################### Case for Tikt
 
-            output_file_compiled = "Rows_Above_1000.csv"
+                filtered_rows2 = df[df['Video_views'] >= quantity_threshold_tiktok]
+                if filtered_rows2 is not None:
+                    output_file_compiled = "Tiktok_Rows_Above_10000.csv"
+                    quantity_above_per_file = filtered_rows2['Video_views'].sum()
+
+                    filtered_dfs.append(filtered_rows2)
+                    file_data2 = []
+                    for index, row in filtered_rows2.iterrows():
+                        record = {
+                            # Assuming 'ISRC' is the column name
+                            'ISRC': row['ISRC'],
+                            'Video_views': row['Video_views']
+                        }
+                        file_data2.append(record)
+                    if file_data2:
+                        directory_data[file] = file_data2
+                        quantity_per_concerning_company += quantity_above_per_file
+            
+            else:
+                print(f"Neither Quantity nor Video_views found in {csv_file_path}. Moving on to the next file.")
+
+                continue
+
             # Create the complete path for the output CSV file
             output_csv_path = os.path.join(root, output_file_compiled)
             # Concatenate all filtered DataFrames into a single DataFrame
@@ -96,11 +102,14 @@ for root, _, files in os.walk(content_folder):
         if os.path.basename(root) != directory_name:
             directories_below_threshold_count += 1
             directories_below_threshold.append(os.path.basename(root))
-    with open('directories_above_1000.txt', 'w') as dir_file:
+    with open('directories_above_1000_spo.txt', 'w') as dir_file:
         for dir_name in directories_above_threshold:
             dir_file.write(f"{dir_name}\n")
-    with open('directories_below_1000.txt', 'w') as dir_file:
+    with open('directories_below_1000_spo.txt', 'w') as dir_file:
         for dir_name in directories_below_threshold:
+            dir_file.write(f"{dir_name}\n")
+    with open('enterprises_analized.txt', 'w') as dir_file:
+        for dir_name in entIds_analized:
             dir_file.write(f"{dir_name}\n")
 
 sorted_concerning = sorted(

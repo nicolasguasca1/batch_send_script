@@ -9,7 +9,7 @@ import sys
 import io
 # import cv2
 # import numpy as np
-# import pandas as pd
+import pandas as pd
 import email.message
 import googleapiclient.discovery
 
@@ -105,8 +105,8 @@ def create_message(message: str, email_from: str, email_to: str, subject: str, m
     msg['To'] = email_to
     msg['From'] = 'Nicolás Guasca'
     msg['Subject'] = subject
-    msg['Cc'] = 'nicolas.guasca@gmail.com', 'nicolas.g@revelator.com'
-    msg['Bcc'] = '420184@bcc.hubspot.com'
+    # msg['Cc'] = 'nicolas.guasca@gmail.com', 'nicolas.g@revelator.com'
+    # msg['Bcc'] = '420184@bcc.hubspot.com'
     temp_dir = tempfile.mkdtemp()
     # Clean up the temporary directory
     shutil.rmtree(temp_dir)
@@ -156,47 +156,48 @@ def create_message2(message: str, email_from: str, email_to: str, subject: str, 
     msg['To'] = email_to
     msg['From'] = 'Nicolás Guasca'
     msg['Subject'] = subject
-    # msg['Cc'] = 'naomi@revelator.com'
+    # msg['Cc'] = 'nicolas.guasca@gmail.com', 'nicolas.g@revelator.com'
+    msg['Bcc'] = '420184@bcc.hubspot.com'
+    msg['Cc'] = 'support@revelator.com'
 
-    file_name_to_send = find_files_with_identifier(folder_attachments, attachment_suffix)
+    # _____________________________________________________________________________
 
-    # # Create a temporary directory to store the zip files
-    # temp_dir = tempfile.mkdtemp()
+    # # Find the folders
+    # folders = find_files_with_suffix(folder_attachments, attachment_suffix)
+    # print(f"Found {len(folders)} folders with suffix {attachment_suffix} in folder {folder_attachments}: {folders}")
 
-    # # Add the attachments
-    # # for folder in folders:
-    # folder_name = folder_attachments+'/'+attachment_suffix
-    # # folder_name = attachment_suffix
-    # zip_path = os.path.join(temp_dir, f"{folder_name}.zip")
+    # Create a temporary directory to store the zip files
+    temp_dir = tempfile.mkdtemp()
 
-    file_path = os.path.join(folder_attachments, file_name_to_send)
+    # Add the attachments
+    # for folder in folders:
+    folder_name = folder_attachments+'/'+attachment_suffix
+    # folder_name = attachment_suffix
+    zip_path = os.path.join(temp_dir, f"{folder_name}.zip")
+
     # Check directory permissions
-    permissions = os.access(file_path, os.W_OK)
-    print(f"File '{file_name_to_send}' has write permission: {permissions}")
+    permissions = os.access(folder_name, os.W_OK)
+    print(f"Directory '{folder_name}' has write permission: {permissions}")
 
-    if permissions:
+    with io.BytesIO() as zip_buffer:
+        with zipfile.ZipFile(zip_buffer, "w", zipfile.ZIP_DEFLATED) as zip_file:
+            for file in os.listdir(folder_name):
+                if file.endswith(".csv"):
+                    file_path = os.path.join(folder_name, file)
+                    relative_path = os.path.relpath(file_path, folder_name)
+                    zip_file.write(file_path, arcname=relative_path)
 
-        with open(file_path, 'rb') as csv_file:
-            msg.add_attachment(csv_file.read(), maintype='text', subtype='csv', filename=file_name_to_send)
+        # Get the bytes of the zip file
+        zip_data = zip_buffer.getvalue()
+    # MOMENTANOUESLY
 
-    # with io.BytesIO() as zip_buffer:
-    #     with zipfile.ZipFile(zip_buffer, "w", zipfile.ZIP_DEFLATED) as zip_file:
-    #         for file in os.listdir(folder_name):
-    #             if file.endswith(".csv"):
-    #                 file_path = os.path.join(folder_name, file)
-    #                 relative_path = os.path.relpath(file_path, folder_name)
-    #                 zip_file.write(file_path, arcname=relative_path)
+    # Add the attachment to the email
+    msg.add_attachment(zip_data, maintype='application',
+                       subtype='zip', filename=f"{attachment_suffix}.zip")
 
-    #     # Get the bytes of the zip file
-    #     zip_data = zip_buffer.getvalue()
-    # # Add the attachment to the email
-    # msg.add_attachment(zip_data, maintype='application',
-    #                    subtype='zip', filename=f"{attachment_suffix}.zip")
-
-    # # Clean up the temporary directory
-    # shutil.rmtree(temp_dir)
+    # Clean up the temporary directory
+    shutil.rmtree(temp_dir)
     return msg
-
 
 def message2bytes(msg) -> dict:
     # Encode the message and save it in a dictionary
