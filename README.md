@@ -148,9 +148,13 @@ Make a test sending an above and a below email to two different sample email add
 
 Run the script with:
 
-python3 send_emails_above.py --folder_attachments /Users/nicolasguascasantamaria/Desktop/RevAPIS/extRepo/gmailAPI/attachments/<NAME_OF_THE_FOLDER> --csv_file_path To_Export_ABOVE.csv
+`python3 send_emails_above.py --folder_attachments /Users/nicolasguascasantamaria/Desktop/RevAPIS/extRepo/gmailAPI/attachments/<NAME_OF_THE_FOLDER> --csv_file_path To_Export_ABOVE.csv`
 
-python3 send_emails_below.py --folder_attachments /Users/nicolasguascasantamaria/Desktop/RevAPIS/extRepo/gmailAPI/attachments/<NAME_OF_THE_FOLDER> --csv_file_path To_Export_BELOW.csv
+`python3 send_emails_below.py --folder_attachments /Users/nicolasguascasantamaria/Desktop/RevAPIS/extRepo/gmailAPI/attachments/<NAME_OF_THE_FOLDER> --csv_file_path To_Export_BELOW.csv`
+
+The latest script ran was `python3 send_emails_all.py --folder_attachments /Users/nicolasguascasantamaria/Desktop/RevAPIS/extRepo/gmailAPI/attachments/AS_Sep_Oct  --csv_file_path TO_EXPORT_SEP_OCT.csv`
+
+->It sent a folder with both Spotify + Tiktok reports and two files with the rows above 1k for Spo and rows above 10k for tiktok. It was sent to the customer and Support.
 
 Make a copy of the logged activity after running the script and save it under Logs folder with the convention existing already
 Stop sending emails to clients with 0 rows. There is already an additional script ruling these out.
