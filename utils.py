@@ -158,7 +158,7 @@ def create_message2(message: str, email_from: str, email_to: str, subject: str, 
     msg['Subject'] = subject
     # msg['Cc'] = 'nicolas.guasca@gmail.com', 'nicolas.g@revelator.com'
     msg['Bcc'] = '420184@bcc.hubspot.com'
-    msg['Cc'] = 'support@revelator.com'
+    # msg['Cc'] = 'support@revelator.com'
 
     # _____________________________________________________________________________
 

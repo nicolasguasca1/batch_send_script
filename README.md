@@ -130,13 +130,13 @@ After the `config.py` has been set up, email lists have been added to the `email
 4. Work also on the sum per ISRC
 
 (6) Sending emails with files to customers
-After the config.py has been set up, email lists have been added to the emails/_.txt folder, and attachments (optional) have been added to the attachment/_ folder, the main script can be run. An example of the script call can be found below. When running this from the user command line, a broswer window should open for authentication to give the app access to send emails from your gmail account. If it doesn't happen automatically, you can copy the link that will be printed to the console. Additionally, after the email list is printed out, users will need to confirm they want to go ahead with sending the email by typing "Y" into the console when prompted. If you type "n" the script will exit and no emails will send. If you type in anything else, you will be re-prompted to type in either "Y" or "n".
+After the config.py has been set up, email lists have been added to the emails/_.txt folder, and attachments (optional) have been added to the attachment/_ folder, the main script can be run. An example of the script call can be found below. When running this from the user command line, a browser window should open for authentication to give the app access to send emails from your gmail account. If it doesn't happen automatically, you can copy the link that will be printed to the console. Additionally, after the email list is printed out, users will need to confirm they want to go ahead with sending the email by typing "Y" into the console when prompted. If you type "n" the script will exit and no emails will send. If you type in anything else, you will be re-prompted to type in either "Y" or "n".
 
-Paste the folder containing the AS Reports into this repository and run the command python dataframe_cell.py --folder_to_filter [ABS_PATH_TO_THE_FOLDER]
+--> Paste the folder containing the AS Reports into this repository and run the command `python dataframe_cell.py --folder_to_filter [ABS_PATH_TO_THE_FOLDER]`
 
 Make sure the amount below and above match the number of folders analized in total
 
-Copy directories_above_1000.txt/below_1000.txt and populate a google sheet with the email addresses you will send to based on the report that uses the EntID of the company. Use the instructions available on the example sheet: https://docs.google.com/spreadsheets/d/1sGvyJ9ws1H3yTtUmVO9s14pXcGflb1pAUuKxYRi_EfA/edit#gid=0
+There will be a document created called 'enterprises_analized.txt' with the EntIds of the companies we need to contact. You can choose to select those or copy directories_above_1000.txt/below_1000.txt to populate a google sheet with the email addresses you will send to based on the report that uses the EntID of the company. Use the instructions available on the example sheet: https://docs.google.com/spreadsheets/d/1sGvyJ9ws1H3yTtUmVO9s14pXcGflb1pAUuKxYRi_EfA/edit#gid=0
 
 When the sheet has been normalized from N/A and NOVALUES cells, export a CSV of the entire list like the 'To Export_ABOVE/BELOW' tabs show in the google sheet and put the files in this directory.
 
@@ -154,7 +154,7 @@ Run the script with:
 
 The latest script ran was `python3 send_emails_all.py --folder_attachments /Users/nicolasguascasantamaria/Desktop/RevAPIS/extRepo/gmailAPI/attachments/AS_Sep_Oct  --csv_file_path TO_EXPORT_SEP_OCT.csv`
 
-->It sent a folder with both Spotify + Tiktok reports and two files with the rows above 1k for Spo and rows above 10k for tiktok. It was sent to the customer and Support.
+->It sends a folder with both Spotify + Tiktok reports and two files with the rows above 1k for Spo and rows above 10k for tiktok. It was sent to the customer and Support.
 
 Make a copy of the logged activity after running the script and save it under Logs folder with the convention existing already
 Stop sending emails to clients with 0 rows. There is already an additional script ruling these out.

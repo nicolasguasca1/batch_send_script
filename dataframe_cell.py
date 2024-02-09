@@ -60,13 +60,13 @@ for root, _, files in os.walk(content_folder):
                         directory_data[file] = file_data
                         quantity_per_concerning_company += quantity_above_per_file
                 
-            elif 'Video_views' in df.columns:
+            elif 'video_views' in df.columns:
                 # ################### Case for Tikt
 
-                filtered_rows2 = df[df['Video_views'] >= quantity_threshold_tiktok]
+                filtered_rows2 = df[df['video_views'] >= quantity_threshold_tiktok]
                 if filtered_rows2 is not None:
                     output_file_compiled = "Tiktok_Rows_Above_10000.csv"
-                    quantity_above_per_file = filtered_rows2['Video_views'].sum()
+                    quantity_above_per_file = filtered_rows2['video_views'].sum()
 
                     filtered_dfs.append(filtered_rows2)
                     file_data2 = []
@@ -74,7 +74,7 @@ for root, _, files in os.walk(content_folder):
                         record = {
                             # Assuming 'ISRC' is the column name
                             'ISRC': row['ISRC'],
-                            'Video_views': row['Video_views']
+                            'video_views': row['video_views']
                         }
                         file_data2.append(record)
                     if file_data2:
@@ -82,7 +82,7 @@ for root, _, files in os.walk(content_folder):
                         quantity_per_concerning_company += quantity_above_per_file
             
             else:
-                print(f"Neither Quantity nor Video_views found in {csv_file_path}. Moving on to the next file.")
+                print(f"Neither Quantity nor video_views found in {csv_file_path}. Moving on to the next file.")
 
                 continue
 

@@ -20,9 +20,9 @@ txt_message_above = '''<!DOCTYPE html >
     <div>
         <p>Dear Customer,</p>
 
-        <p><strong>Dec 13, 2023</strong></p>
+        <p><strong>Jan 11, 2024</strong></p>
 
-        <p>Please find attached your most recent Suspected Artificial Streaming claims report. This report contains files originated by Spotify and Tiktok. It identifies the suspected artificial streams from your distributed catalog. DSPs send these monthly reports to explain royalties they are withholding, to ensure you are aware of what has been distributed under your catalog, and to make us aware as your distribution partner.</p>
+        <p>Please find attached your most recent Suspected Artificial Streaming claims report. This report contains files originated by Spotify. It identifies the suspected artificial streams from your distributed catalog. DSPs send these monthly reports to explain royalties they are withholding, to ensure you are aware of what has been distributed under your catalog, and to make us aware as your distribution partner.</p>
 
         <p>We have included files with the naming convention <em>Rows_Above_</em> which contains all the lines that are concerning and require your immediate action among the reports contained within the attachment. </p>
 
@@ -182,32 +182,44 @@ txt_message_mix = '''<!DOCTYPE html >
 </head >
 <body >
     <div>
-        <p>Dear Customer,</p>
+        <p>Dear Partner,</p>
 
-        <p><strong>Dec 13, 2023</strong></p>
+        <p><strong>Feb 9, 2024</strong></p>
 
-        <p>Please find attached your most recent Suspected Artificial Streaming claims report. The attachment contains files originated by the DSPs that have issued warnings on your catalogue. These reports explain the royalties they are withholding, to ensure you are aware of what has been distributed under your account, and to make us aware as your distribution partner.</p>
+        <p>Please find attached the Artificial Streaming reports we have received from the following DSPs regarding your catalog:</p>
 
-        <p>We’ve included files with the naming convention Rows_Above which contain all the lines that are concerning and require your immediate action among the reports contained within the attachment.</p>
+        <p>Spotify - Dec23</p>
 
-        <p>For any single track referenced, we urge you to enforce a more rigorous inspection process, to investigate, review, target and stop any actions that are triggering the activity found on the tracks in question.</p>
+        <p>Pandora - Dec 2023</p>
 
-        <p>Check our guide on <a href="https://helpdesk.revelator.com/support/solutions/articles/69000826948-how-to-manage-and-avoid-artificial-streaming" target="blank">How to Manage Artificial Streaming</a> for additional information.</p>
+        <p>Deezer - Jan 2024</p>
 
-        <p>Distributing Artificial Streaming is regarded as fraud by our DSP partners and poses a risk to all of us. Understanding your responsibilities in combating music fraud as a Revelator customer is vital.</p>
+        <p>Deezer - Feb 2024</p>
 
-        <p>Do you require our assistance in creating or implementing an anti-fraud policy? Are you in need of help in tracking inspections? If so, please <a href="https://meetings.hubspot.com/maya-marija" target="blank">book a time with our team here</a> and let's discuss how we can offer support.</p>
+        <p>These reports include assets identified by the DSPs as actively engaged with Artificial Streaming. This notice aims to alert you to these assets for proactive measures, preventing potential permanent takedowns. The DSPs will withhold royalties generated artificially by these assets.</p>
 
-        <p> Appreciate your attention to this matter.</p>
+        <p><strong>What’s the next step?</strong></p>
 
-        <p>Nicolás Guasca</p>
+        <p>For any single track referenced, we urge you to investigate your clients to find the possible source of the artificial activity. Request them to immediately stop any campaign from services that guarantee streams or playlist placements.</p>
+
+        <p>Specifically, spotify has announced an upcoming penalty of 10 euros per track, per month, for any track found to have significant artificial streaming. We don't yet have a date or further details of how this will determined and what tracks will be included in this penalty category, but we urge you to carefully monitor and review your catalog now, so as to get ahead of significant potential penalties coming in the near future.</p>
+
+        <p>For more info, please read this article <a href="https://support.spotify.com/us/artists/article/third-party-services-that-guarantee-streams" target="blank">Artificial streaming and paid 3rd-party services that guarantee streams</a> for additional information.</p>
+
+        <p>We’ve included files with the naming convention Rows_Above which contain all the lines with more than 1000 artificial streams per track which require your immediate action among the reports contained within the attachment.</p>
+
+        <p>If you need our assistance regarding this matter, please <a href="https://meetings.hubspot.com/maya-marija" target="blank">book a time with our team here</a> or reply to this email putting support@revelator.com on cc and let's discuss how we can offer support.</p>
+
+        <p>Appreciate your attention to this matter and working hard to provide with you as much insights as possible.</p>
+
+        <p>Revelator</p>
 
             <p>&nbsp;</p>
         <h3 style="text-align: center; color: #3f7320;"><span class="gmail_signature_prefix">--</span></h3>
         <div dir="ltr" class="gmail_signature" data-smartmail="gmail_signature">
             <div dir="ltr">
                 <div>Nicol&aacute;s Guasca Santamar&iacute;a</div>
-                <div>Customer Success<i><br /></i></div>
+                <div>Distribution & Operations<i><br /></i></div>
                 <div><i>&nbsp;</i></div>
                 <div><i>Music's Everything<br /></i></div>
                 <div><i><u>Revelator.com</u></i></div>
@@ -230,13 +242,13 @@ txt_message_mix = '''<!DOCTYPE html >
 gmail_address = 'Nicolás Guasca'
 
 # Subject lines
-subject_line_delayed_report = 'Subject: Notice of Delay Regarding your September Statement'
+subject_line_delayed_report = 'Subject: Notice of Delay Regarding your November Statement'
 
 subject_line_above = 'Spotify AS Report August: Action Required'
 
 subject_line_below = 'Spotify AS Report August: No Action Required'
 
-subject_line_all = 'Spotify AS Report September-October: Action Required'
+subject_line_all = 'Artificial Streaming Monthly Report : Action Required'
 
 # The gmail API can be used to send emails
 scopes = ['https://www.googleapis.com/auth/gmail.send']
