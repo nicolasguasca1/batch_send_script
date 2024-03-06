@@ -184,33 +184,33 @@ txt_message_mix = '''<!DOCTYPE html >
     <div>
         <p>Dear Partner,</p>
 
-        <p><strong>Feb 9, 2024</strong></p>
+        <p><strong>March 6, 2024</strong></p>
 
-        <p>Please find attached the Artificial Streaming reports we have received from the following DSPs regarding your catalog:</p>
+        <p>The artificial streaming (AS) reports we've received from DSPs regarding your catalog are attached to this email.</p>
 
-        <p>Spotify - Dec23</p>
-
-        <p>Pandora - Dec 2023</p>
-
-        <p>Deezer - Jan 2024</p>
-
-        <p>Deezer - Feb 2024</p>
+        <p>To make it easier to understand this reporting, we’ve highlighted with a filter for Rows_Above any tracks with more than 1,000 AS to help you identify the worst offenders and prioritize your response.</p>
 
         <p>These reports include assets identified by the DSPs as actively engaged with Artificial Streaming. This notice aims to alert you to these assets for proactive measures, preventing potential permanent takedowns. The DSPs will withhold royalties generated artificially by these assets.</p>
 
-        <p><strong>What’s the next step?</strong></p>
+        <p><strong>NEXT STEPS</strong></p>
 
-        <p>For any single track referenced, we urge you to investigate your clients to find the possible source of the artificial activity. Request them to immediately stop any campaign from services that guarantee streams or playlist placements.</p>
+        <p>Review the reports and if issues are present, discuss it with your clients in order to determine whether this is the result of fraudulent behavior or the use of a playlisting/stream boosting service. Note that most of these services engage in practices which the DSPs consider to be abusive and to constitute AS. You can read more about this in the following Spotify article. <a href="https://artists.spotify.com/video/what-is-artificial-streaming" target="blank">This video</a> from Spotify is also useful in explaining AS and educating your clients as to its harm.</p>
 
-        <p>Specifically, spotify has announced an upcoming penalty of 10 euros per track, per month, for any track found to have significant artificial streaming. We don't yet have a date or further details of how this will determined and what tracks will be included in this penalty category, but we urge you to carefully monitor and review your catalog now, so as to get ahead of significant potential penalties coming in the near future.</p>
+        <p>Have your clients immediately cease any activity leading to the reported AS, and notify them of the many potential consequences:</p>
 
-        <p>For more info, please read this article <a href="https://support.spotify.com/us/artists/article/third-party-services-that-guarantee-streams" target="blank">Artificial streaming and paid 3rd-party services that guarantee streams</a> for additional information.</p>
+        <p>-Withholding of royalties</p>
 
-        <p>We’ve included files with the naming convention Rows_Above which contain all the lines with more than 1000 artificial streams per track which require your immediate action among the reports contained within the attachment.</p>
+        <p>-Permanent removal of their track from the DSP</p>
 
-        <p>If you need our assistance regarding this matter, please <a href="https://meetings.hubspot.com/maya-marija" target="blank">book a time with our team here</a> or reply to this email putting support@revelator.com on cc and let's discuss how we can offer support.</p>
+        <p>-Harming their overall profile and the discovery of their music</p>
 
-        <p>Appreciate your attention to this matter and working hard to provide with you as much insights as possible.</p>
+        <p>-If you suspect a bad actor, we further encourage you to take down their entire catalog and terminate their account.</p>
+
+        <p>Spotify has announced an upcoming penalty of 10 euros per track, per month, for any track found to be significantly engaging in AS. We will share more information regarding this new Spotify policy as such details become available to us, but we urge you to carefully monitor and review your catalog now, to be prepared for significant potential penalties coming in the near future.</p>
+
+        <p>If you need our assistance regarding this matter, please <a href="https://meetings.hubspot.com/maya-marija" target="blank">book a time with our team here</a> or reply to this email and CC support@revelator.com if you have basic AS or report questions.</p>
+
+        <p>Grateful for your partnership.</p>
 
         <p>Revelator</p>
 

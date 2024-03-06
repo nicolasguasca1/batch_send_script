@@ -44,7 +44,7 @@ for root, _, files in os.walk(content_folder):
             if 'Quantity' in df.columns:
                 filtered_rows = df[df['Quantity'] >= quantity_threshold]
                 if filtered_rows is not None:
-                    output_file_compiled = "Spo_Rows_Above_1000.csv"
+                    output_file_compiled = "Deezer_Rows_Above_1000.csv"
                     quantity_above_per_file = filtered_rows['Quantity'].sum()
 
                     filtered_dfs.append(filtered_rows)
