@@ -184,33 +184,29 @@ txt_message_mix = '''<!DOCTYPE html >
     <div>
         <p>Dear Partner,</p>
 
-        <p><strong>March 6, 2024</strong></p>
+        <p><strong>March 27th, 2024</strong></p>
 
-        <p>The artificial streaming (AS) reports we've received from DSPs regarding your catalog are attached to this email.</p>
-
-        <p>To make it easier to understand this reporting, we’ve highlighted with a filter for Rows_Above any tracks with more than 1,000 AS to help you identify the worst offenders and prioritize your response.</p>
-
-        <p>These reports include assets identified by the DSPs as actively engaged with Artificial Streaming. This notice aims to alert you to these assets for proactive measures, preventing potential permanent takedowns. The DSPs will withhold royalties generated artificially by these assets.</p>
+        <p>In the attached reports we’ve further highlighted with “Rows_Above” the tracks with more than 1,000 AS (10,000 for Tiktok) to help you identify the worst offenders and prioritize your response.</p>
 
         <p><strong>NEXT STEPS</strong></p>
 
-        <p>Review the reports and if issues are present, discuss it with your clients in order to determine whether this is the result of fraudulent behavior or the use of a playlisting/stream boosting service. Note that most of these services engage in practices which the DSPs consider to be abusive and to constitute AS. You can read more about this in the following Spotify article. <a href="https://artists.spotify.com/video/what-is-artificial-streaming" target="blank">This video</a> from Spotify is also useful in explaining AS and educating your clients as to its harm.</p>
+        <p>1. Please review the content and discuss it with your clients in order to determine whether this is the result of fraudulent behavior or the use of a playlisting/stream boosting service. Note that most of these services engage in practices which the DSPs consider to be abusive and to constitute AS. You can read more about this in this <a href="https://support.spotify.com/us/artists/article/third-party-services-that-guarantee-streams/" target="blank">Spotify article. </a><a href="https://artists.spotify.com/video/what-is-artificial-streaming" target="blank">This video from Spotify</a> is also useful in explaining AS and educating your clients as to its harm.</p>
 
-        <p>Have your clients immediately cease any activity leading to the reported AS, and notify them of the many potential consequences:</p>
+        <p>2. Have your clients immediately cease any activity leading to the reported AS, and notify them of the many potential consequences:</p>
 
-        <p>-Withholding of royalties</p>
+        <p>a. Withholding of royalties</p>
 
-        <p>-Permanent removal of their track from the DSP</p>
+        <p>b. Permanent removal of their track from the DSP</p>
 
-        <p>-Harming their overall profile and the discovery of their music</p>
+        <p>c. <a href="https://www.music-tomorrow.com/blog/the-negative-impact-of-fake-streams-on-artists-algorithmic-performance" target="blank">Harming their overall profile and the discovery of their music</a></p>
 
-        <p>-If you suspect a bad actor, we further encourage you to take down their entire catalog and terminate their account.</p>
+        <p>3. If you suspect a bad actor, we further encourage you to take down their entire catalog and terminate their account.</p>
 
-        <p>Spotify has announced an upcoming penalty of 10 euros per track, per month, for any track found to be significantly engaging in AS. We will share more information regarding this new Spotify policy as such details become available to us, but we urge you to carefully monitor and review your catalog now, to be prepared for significant potential penalties coming in the near future.</p>
+        <p>Please further note that Spotify has announced an upcoming penalty of 10 euros per track, per month, for any track found to be significantly engaging in AS. We will share more information regarding this new Spotify policy as such details become available to us, but we urge you to carefully monitor and review your catalog now so as to get ahead of significant potential penalties coming in the near future.</p>
 
-        <p>If you need our assistance regarding this matter, please <a href="https://meetings.hubspot.com/maya-marija" target="blank">book a time with our team here</a> or reply to this email and CC support@revelator.com if you have basic AS or report questions.</p>
+        <p>If you need our assistance regarding this matter, please book a time with our team <a href="https://meetings.hubspot.com/maya-marija" target="blank">here</a> or reply to this email and CC support@revelator.com if you only have some basic questions.</p>
 
-        <p>Grateful for your partnership.</p>
+        <p>We appreciate your attention to this matter.</p>
 
         <p>Revelator</p>
 
@@ -248,7 +244,7 @@ subject_line_above = 'Spotify AS Report August: Action Required'
 
 subject_line_below = 'Spotify AS Report August: No Action Required'
 
-subject_line_all = 'Artificial Streaming Monthly Report : Action Required'
+subject_line_all = 'Tiktok and Spotify Artificial Streaming Reports 02/2024'
 
 # The gmail API can be used to send emails
 scopes = ['https://www.googleapis.com/auth/gmail.send']

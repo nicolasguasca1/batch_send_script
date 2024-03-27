@@ -117,6 +117,9 @@ After the `config.py` has been set up, email lists have been added to the `email
 
 `python3 send_simple_template_email.py --csv_file_path possible_delays_sep_2023_royalty_run_to_export.csv`
 
+NOTE:If the interpreter you are using is 3.10 and .zshrc for shell profile use:
+`python send_simple_template_email.py --csv_file_path possible_delays_sep_2023_royalty_run_to_export.csv`
+
 9. Make a copy of the logged activity after running the script and save it under Logs folder with the convention existing already
 
 <!-- STEP BY STEP TO SEND THE EMAILS -->

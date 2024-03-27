@@ -29,13 +29,14 @@ output_compiled_directory = f"{directory_name}_Compiled"
 for root, _, files in os.walk(content_folder):
     dir_b_path = os.path.join(content_folder, root)
     directory_data = {}
-    filtered_dfs = []
     quantity_per_concerning_company = 0
     entIds_analized.append(os.path.basename(root))
     for file in files:
+        filtered_dfs = []
         filtered_rows = None
         filtered_rows2 = None
         if file.endswith('.csv'):
+            
             csv_file_path = os.path.join(dir_b_path, file)
             with open(csv_file_path, 'r') as csv_file:
                 quantity_above_per_file = 0
@@ -44,7 +45,7 @@ for root, _, files in os.walk(content_folder):
             if 'Quantity' in df.columns:
                 filtered_rows = df[df['Quantity'] >= quantity_threshold]
                 if filtered_rows is not None:
-                    output_file_compiled = "Deezer_Rows_Above_1000.csv"
+                    output_file_compiled = "Spotify_Rows_Above_1000.csv"
                     quantity_above_per_file = filtered_rows['Quantity'].sum()
 
                     filtered_dfs.append(filtered_rows)
@@ -53,20 +54,22 @@ for root, _, files in os.walk(content_folder):
                         record = {
                             # Assuming 'ISRC' is the column name
                             'ISRC': row['ISRC'],
-                            'Quantity': row['Quantity']
+                            'SpoQuantity': row['Quantity']
                         }
                         file_data.append(record)
                     if file_data:
                         directory_data[file] = file_data
                         quantity_per_concerning_company += quantity_above_per_file
                 
-            elif 'video_views' in df.columns:
+            elif 'tkt_quantity' in df.columns:
                 # ################### Case for Tikt
 
-                filtered_rows2 = df[df['video_views'] >= quantity_threshold_tiktok]
+                filtered_rows2 = df[(df['tkt_quantity'] >= quantity_threshold_tiktok) & (df['removal_reason'] == 'Bot Creation')]
+                # USED TO BE:
+                # filtered_rows2 = df[df['tkt_quantity'] >= quantity_threshold_tiktok]
                 if filtered_rows2 is not None:
                     output_file_compiled = "Tiktok_Rows_Above_10000.csv"
-                    quantity_above_per_file = filtered_rows2['video_views'].sum()
+                    quantity_above_per_file = filtered_rows2['tkt_quantity'].sum()
 
                     filtered_dfs.append(filtered_rows2)
                     file_data2 = []
@@ -74,11 +77,32 @@ for root, _, files in os.walk(content_folder):
                         record = {
                             # Assuming 'ISRC' is the column name
                             'ISRC': row['ISRC'],
-                            'video_views': row['video_views']
+                            'tkt_quantity': row['tkt_quantity']
                         }
                         file_data2.append(record)
                     if file_data2:
                         directory_data[file] = file_data2
+                        quantity_per_concerning_company += quantity_above_per_file
+
+            elif 'pndra_quantity' in df.columns:
+                # ################### Case for Tikt
+
+                filtered_rows3 = df[df['pndra_quantity'] >= quantity_threshold]
+                if filtered_rows3 is not None:
+                    output_file_compiled = "Pandora_Rows_Above_10000.csv"
+                    quantity_above_per_file = filtered_rows3['pndra_quantity'].sum()
+
+                    filtered_dfs.append(filtered_rows3)
+                    file_data3 = []
+                    for index, row in filtered_rows3.iterrows():
+                        record = {
+                            # Assuming 'ISRC' is the column name
+                            'ISRC': row['ISRC'],
+                            'pndra_quantity': row['pndra_quantity']
+                        }
+                        file_data3.append(record)
+                    if file_data3:
+                        directory_data[file] = file_data3
                         quantity_per_concerning_company += quantity_above_per_file
             
             else:
