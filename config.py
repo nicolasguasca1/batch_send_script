@@ -184,9 +184,11 @@ txt_message_mix = '''<!DOCTYPE html >
     <div>
         <p>Dear Partner,</p>
 
-        <p><strong>March 27th, 2024</strong></p>
+        <p><strong>May 9th, 2024</strong></p>
 
-        <p>In the attached reports we’ve further highlighted with “Rows_Above” the tracks with more than 1,000 AS (10,000 for Tiktok) to help you identify the worst offenders and prioritize your response.</p>
+        <p>In the attached reports we’ve further highlighted with “Rows_Above” the tracks with more than 1,000 AS to help you identify the worst offenders and prioritize your response. If you find no rows within this document, it means you have no assets reported above this threshold. </p>
+
+        <p>However, this threshold will not continue being a good measurement of how compromised you catalog is in terms of Artificial Streaming. <strong>Starting with streaming activity from April 1, 2024 Spotify will apply a 10 Euro penalty for any track whose streams are 90% or more artificial. We urge you to carefully review this report as it represents the last time that artificial streams will not result in a 10 Euro penalty.</strong></p>
 
         <p><strong>NEXT STEPS</strong></p>
 
@@ -202,9 +204,9 @@ txt_message_mix = '''<!DOCTYPE html >
 
         <p>3. If you suspect a bad actor, we further encourage you to take down their entire catalog and terminate their account.</p>
 
-        <p>Please further note that Spotify has announced an upcoming penalty of 10 euros per track, per month, for any track found to be significantly engaging in AS. We will share more information regarding this new Spotify policy as such details become available to us, but we urge you to carefully monitor and review your catalog now so as to get ahead of significant potential penalties coming in the near future.</p>
+        <p>We will share more information regarding this new Spotify policy as such details become available to us, but we urge you to carefully monitor and review your catalog now so as to get ahead of significant potential penalties coming in the near future.</p>
 
-        <p>If you need our assistance regarding this matter, please book a time with our team <a href="https://meetings.hubspot.com/maya-marija" target="blank">here</a> or reply to this email and CC support@revelator.com if you only have some basic questions.</p>
+        <p>If you need our assistance regarding this matter, please book a time with our team <a href="https://meetings.hubspot.com/maya-marija" target="blank">here</a> or reply to this email and CC support@revelator.com if you have some basic questions.</p>
 
         <p>We appreciate your attention to this matter.</p>
 
@@ -244,7 +246,7 @@ subject_line_above = 'Spotify AS Report August: Action Required'
 
 subject_line_below = 'Spotify AS Report August: No Action Required'
 
-subject_line_all = 'Tiktok and Spotify Artificial Streaming Reports 02/2024'
+subject_line_all = 'Spotify/Deezer Artificial Streaming Reports 03-04/2024'
 
 # The gmail API can be used to send emails
 scopes = ['https://www.googleapis.com/auth/gmail.send']

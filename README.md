@@ -139,9 +139,9 @@ After the config.py has been set up, email lists have been added to the emails/_
 
 Make sure the amount below and above match the number of folders analized in total
 
-There will be a document created called 'enterprises_analized.txt' with the EntIds of the companies we need to contact. You can choose to select those or copy directories_above_1000.txt/below_1000.txt to populate a google sheet with the email addresses you will send to based on the report that uses the EntID of the company. Use the instructions available on the example sheet: https://docs.google.com/spreadsheets/d/1sGvyJ9ws1H3yTtUmVO9s14pXcGflb1pAUuKxYRi_EfA/edit#gid=0
+There will be a document created called 'enterprises_analized.txt' with the EntIds of the companies we need to contact. You can choose to select those or copy directories_above_1000.txt/below_1000.txt to populate a google sheet with the email addresses you will send to based on the report that uses the EntID of the company. Use the instructions available on the example sheet on the most recent doc from this folder: https://drive.google.com/drive/folders/11vDTkFzpenaQTOrcAk4zfmol8CKu-iMH
 
-When the sheet has been normalized from N/A and NOVALUES cells, export a CSV of the entire list like the 'To Export_ABOVE/BELOW' tabs show in the google sheet and put the files in this directory.
+Follow the instruction in order to get a file like To_Export_All.csv to trigger the script.
 
 Remove the additional commas and the first line on each csv so the script grabs the emails accurately
 
@@ -155,7 +155,7 @@ Run the script with:
 
 `python3 send_emails_below.py --folder_attachments /Users/nicolasguascasantamaria/Desktop/RevAPIS/extRepo/gmailAPI/attachments/<NAME_OF_THE_FOLDER> --csv_file_path To_Export_BELOW.csv`
 
-The latest script ran was `python3 send_emails_all.py --folder_attachments /Users/nicolasguascasantamaria/Desktop/RevAPIS/extRepo/gmailAPI/attachments/AS_Sep_Oct  --csv_file_path TO_EXPORT_SEP_OCT.csv`
+The latest script ran was `python send_emails_all.py --folder_attachments /Users/nicolasguascasantamaria/Desktop/RevAPIS/extRepo/gmailAPI/attachments/march_27th_processing  --csv_file_path To_Export_All.csv      `
 
 ->It sends a folder with both Spotify + Tiktok reports and two files with the rows above 1k for Spo and rows above 10k for tiktok. It was sent to the customer and Support.
 

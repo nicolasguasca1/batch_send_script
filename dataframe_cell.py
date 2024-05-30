@@ -35,6 +35,8 @@ for root, _, files in os.walk(content_folder):
         filtered_dfs = []
         filtered_rows = None
         filtered_rows2 = None
+        filtered_rows3 = None
+        filtered_rows4 = None
         if file.endswith('.csv'):
             
             csv_file_path = os.path.join(dir_b_path, file)
@@ -89,7 +91,7 @@ for root, _, files in os.walk(content_folder):
 
                 filtered_rows3 = df[df['pndra_quantity'] >= quantity_threshold]
                 if filtered_rows3 is not None:
-                    output_file_compiled = "Pandora_Rows_Above_10000.csv"
+                    output_file_compiled = "Pandora_Rows_Above_1000.csv"
                     quantity_above_per_file = filtered_rows3['pndra_quantity'].sum()
 
                     filtered_dfs.append(filtered_rows3)
@@ -103,6 +105,27 @@ for root, _, files in os.walk(content_folder):
                         file_data3.append(record)
                     if file_data3:
                         directory_data[file] = file_data3
+                        quantity_per_concerning_company += quantity_above_per_file
+            
+            elif 'deezer_quantity' in df.columns:
+                # ################### Case for Tikt
+
+                filtered_rows4 = df[df['deezer_quantity'] >= quantity_threshold]
+                if filtered_rows4 is not None:
+                    output_file_compiled = "Deezer_Rows_Above_1000.csv"
+                    quantity_above_per_file = filtered_rows4['deezer_quantity'].sum()
+
+                    filtered_dfs.append(filtered_rows4)
+                    file_data4 = []
+                    for index, row in filtered_rows4.iterrows():
+                        record = {
+                            # Assuming 'ISRC' is the column name
+                            'ISRC': row['ISRC'],
+                            'deezer_quantity': row['deezer_quantity']
+                        }
+                        file_data4.append(record)
+                    if file_data4:
+                        directory_data[file] = file_data4
                         quantity_per_concerning_company += quantity_above_per_file
             
             else:
