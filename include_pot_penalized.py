@@ -4,7 +4,7 @@ import sys
 import os
 import pandas as pd
 
-# Define paths
+# Define paths being the first one the directory with the reports per customer and the second one the CSV file with the fines compiled
 main_folder = 'path_to_main_folder'
 separate_csv_path = 'path_to_separate_csv_file.csv'
 subfolders_txt_path = 'clients_analized.txt'
@@ -66,7 +66,7 @@ for subfolder_name in os.listdir(main_folder):
             # filtered_records_df = all_records_df[all_records_df.iloc[:, 11] == subfolder_name]
             # print(f"Filtered records sample {filtered_records_df}")
             # Define output path for filtered records inside the subfolder
-            output_path = os.path.join(subfolder_path, 'filtered_records.csv')
+            output_path = os.path.join(subfolder_path, 'fines_applied.csv')
             
             # Write the filtered records to the new CSV file inside the subfolder
             filtered_records_df.to_csv(output_path, index=False)

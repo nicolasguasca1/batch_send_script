@@ -164,6 +164,9 @@ Stop sending emails to clients with 0 rows. There is already an additional scrip
 
 Save the compiled folder into a drive link that we can share instead of the file itself
 
-Test sending with 'bcc' to 420184@bcc.hubspot.com
+Test sending with 'bcc' to 420184@bcc.hbs.com
 
 Work also on the sum per ISRC
+
+May31st UPDATE!
+Make sure the folder containing all the folders coming from opsscripting is in place to run include_pot_penalized script to add a detailed file with relevant information like so `python include_pot_penalized.py <RELATIVE_PATH_TO_ENTIRE_REPORT_TO_AFFECT> <RELATIVE_PATH_TO_SEGREGATED_REPORT_OBTAINED_WITH_PROBLEMATIC_ROWS>`

@@ -107,7 +107,7 @@ def create_message(message: str, email_from: str, email_to: str, subject: str, m
     msg['Subject'] = subject
     # msg['Cc'] = 'naomi@revelator.com'
     # msg['Cc'] = 'nicolas.guasca@gmail.com', 'nicolas.g@revelator.com'
-    msg['Bcc'] = '420184@bcc.hubspot.com'
+    # msg['Bcc'] = '420184@bcc.hubspot.com'
     temp_dir = tempfile.mkdtemp()
     # Clean up the temporary directory
     shutil.rmtree(temp_dir)
