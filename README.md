@@ -1,3 +1,5 @@
+-> SCROLL TO THE BOTTOM FOR CUSTOM INSTRUCTIONS:
+
 # Send emails with the Gmail API for python
 
 This repo provides a one-line python functionality to send the same email to a list of recipients using the [Gmail API](https://developers.google.com/gmail/api/guides). This readme provides step-by-step instructions on how to configure the files in this repo so that the email message is tailored to your needs.
@@ -101,61 +103,46 @@ Remove the toy file1.png and file2.jpg files before sending your email.
 
 After the `config.py` has been set up, email lists have been added to the `emails/*.txt` folder, and attachments (optional) have been added to the `attachment/*` folder, the main script can be run. An example of the script call can be found below. When running this from the user command line, a broswer window should open for authentication to give the app access to send emails from your gmail account. If it doesn't happen automatically, you can copy the link that will be printed to the console. Additionally, after the email list is printed out, users will need to confirm they want to go ahead with sending the email by typing "Y" into the console when prompted. If you type "n" the script will exit and no emails will send. If you type in anything else, you will be re-prompted to type in either "Y" or "n".
 
-<!-- STEP BY STEP TO MODIFY THE FOLDERS AND SEND EMAILS -->
+<!-- CUSTOM INSTRUCTIONS -->
 
-1. Populate a sheet like the following with emails addresses and company names for the companies you want to reach: https://docs.google.com/spreadsheets/d/1Zuoc716aRFNVdy3OdKO_cw2-7f_VZtgV1pr074VIwxI/edit?usp=sharing
-
-2. When the sheet has been normalized from N/A and NOVALUES cells, export a CSV of the entire list like the 'To Export' tabs show in the google sheet and put the files in this directory.
-
-3. Remove the additional commas and the first line on each csv so the script grabs the emails accurately
-
-4. Change the contents of the text to send as message as well as the recipients in CC and subject.
-
-5. Make a test sending an above and a below email to two different sample email addresses to see the attachments went well
-
-6. Change the contents of the text to send as message as well as the recipients in CC and subject available in `config.py` and in `utils.py`.
-
-`python3 send_simple_template_email.py --csv_file_path possible_delays_sep_2023_royalty_run_to_export.csv`
+<!-- LEGACY INFO -->
 
 NOTE:If the interpreter you are using is 3.10 and .zshrc for shell profile use:
 `python send_simple_template_email.py --csv_file_path possible_delays_sep_2023_royalty_run_to_export.csv`
 
 9. Make a copy of the logged activity after running the script and save it under Logs folder with the convention existing already
 
-<!-- STEP BY STEP TO SEND THE EMAILS -->
+<!-- STEP BY STEP TO SEND THE EMAILS WITH FILES TO CUSTOMERS -->
 
-1. Stop sending emails to clients with 0 rows. There is already an additional script ruling these out.
-
-2. Save the compiled folder into a drive link that we can share instead of the file itself
-
-3. Test sending with 'bcc' to 420184@bcc.hubspot.com
-
-4. Work also on the sum per ISRC
-
-(6) Sending emails with files to customers
-After the config.py has been set up, email lists have been added to the emails/_.txt folder, and attachments (optional) have been added to the attachment/_ folder, the main script can be run. An example of the script call can be found below. When running this from the user command line, a browser window should open for authentication to give the app access to send emails from your gmail account. If it doesn't happen automatically, you can copy the link that will be printed to the console. Additionally, after the email list is printed out, users will need to confirm they want to go ahead with sending the email by typing "Y" into the console when prompted. If you type "n" the script will exit and no emails will send. If you type in anything else, you will be re-prompted to type in either "Y" or "n".
+1. Process the files to obtain information about assets above/below the 1k threshold (10k for Tiktok) as well as breakdown of clients with the most AS Streams.
 
 --> Paste the folder containing the AS Reports into this repository and run the command `python dataframe_cell.py --folder_to_filter [ABS_PATH_TO_THE_FOLDER]`
 
-Make sure the amount below and above match the number of folders analized in total
+2. After the config.py has been set up, email lists have been added to the emails/_.txt folder, and attachments (optional) have been added to the attachment/_ folder, the main script can be run. An example of the script call can be found below. When running this from the user command line, a browser window should open for authentication to give the app access to send emails from your gmail account. If it doesn't happen automatically, you can copy the link that will be printed to the console. Additionally, after the email list is printed out, users will need to confirm they want to go ahead with sending the email by typing "Y" into the console when prompted. If you type "n" the script will exit and no emails will send. If you type in anything else, you will be re-prompted to type in either "Y" or "n".
 
-There will be a document created called 'enterprises_analized.txt' with the EntIds of the companies we need to contact. You can choose to select those or copy directories_above_1000.txt/below_1000.txt to populate a google sheet with the email addresses you will send to based on the report that uses the EntID of the company. Use the instructions available on the example sheet on the most recent doc from this folder: https://drive.google.com/drive/folders/11vDTkFzpenaQTOrcAk4zfmol8CKu-iMH
+\*Make sure the amount below and above match the number of folders analized in total
 
-Follow the instruction in order to get a file like To_Export_All.csv to trigger the script.
+3. There will be a document created called 'enterprises_analized.txt' with the EntIds of the companies we need to contact. You can choose to select those or copy directories_above_1000.txt/below_1000.txt to populate a google sheet with the email addresses you will send to based on the report that uses the EntID of the company. Use the instructions available on the example sheet on the most recent doc from this folder: https://drive.google.com/drive/folders/11vDTkFzpenaQTOrcAk4zfmol8CKu-iMH
 
-Remove the additional commas and the first line on each csv so the script grabs the emails accurately
+4. Follow the instruction in order to get a file like To_Export_All.csv to trigger the script.
 
-Changes the contents of the text to send as message as well as the recipients in CC and subject.
+5. Remove the additional commas and the first line on each csv so the script grabs the emails accurately
 
-Make a test sending an above and a below email to two different sample email addresses to see the attachments went well
+6. Change the contents of the text to send as message as well as the recipients in CC and subject and make sure it is being used by the script used (send_emails_all.py the latest)
 
-Run the script with:
+7. Make a test sending an above and a below email to two different sample email addresses to see the attachments went well
+
+-> Run the script with:
+
+<!-- LEGACY COMMANDS: -->
 
 `python3 send_emails_above.py --folder_attachments /Users/nicolasguascasantamaria/Desktop/RevAPIS/extRepo/gmailAPI/attachments/<NAME_OF_THE_FOLDER> --csv_file_path To_Export_ABOVE.csv`
 
 `python3 send_emails_below.py --folder_attachments /Users/nicolasguascasantamaria/Desktop/RevAPIS/extRepo/gmailAPI/attachments/<NAME_OF_THE_FOLDER> --csv_file_path To_Export_BELOW.csv`
 
-The latest script ran was `python send_emails_all.py --folder_attachments /Users/nicolasguascasantamaria/Desktop/RevAPIS/extRepo/gmailAPI/attachments/march_27th_processing  --csv_file_path To_Export_All.csv      `
+<!-- Latest script ran: -->
+
+`python send_emails_all.py --folder_attachments /Users/nicolasguascasantamaria/Desktop/RevAPIS/extRepo/gmailAPI/attachments/march_27th_processing  --csv_file_path To_Export_All.csv`
 
 ->It sends a folder with both Spotify + Tiktok reports and two files with the rows above 1k for Spo and rows above 10k for tiktok. It was sent to the customer and Support.
 
@@ -169,4 +156,14 @@ Test sending with 'bcc' to 420184@bcc.hbs.com
 Work also on the sum per ISRC
 
 May31st UPDATE!
-Make sure the folder containing all the folders coming from opsscripting is in place to run include_pot_penalized script to add a detailed file with relevant information like so `python include_pot_penalized.py <RELATIVE_PATH_TO_ENTIRE_REPORT_TO_AFFECT> <RELATIVE_PATH_TO_SEGREGATED_REPORT_OBTAINED_WITH_PROBLEMATIC_ROWS>`
+For the Spotify folder: Make sure the folder containing all the folders coming from opsscripting is in place to run include_pot_penalized script to add a detailed file with relevant information like so `python include_pot_penalized.py <RELATIVE_PATH_TO_ENTIRE_REPORT_TO_AFFECT> <RELATIVE_PATH_TO_SEGREGATED_REPORT_OBTAINED_WITH_PROBLEMATIC_ROWS>`
+
+<!-- FUTURE IMPROVEMENT -->
+
+1. Stop sending emails to clients with 0 rows. There is already an additional script ruling these out.
+
+2. Save the compiled folder into a drive link that we can share instead of the file itself
+
+3. Test sending with 'bcc' to 420184@bcc.hubspot.com
+
+4. Work also on the sum per ISRC

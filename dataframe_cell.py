@@ -25,12 +25,18 @@ quantity_threshold_tiktok = 10000
 quantities_concerning = {}
 directory_name = os.path.basename(content_folder)
 output_compiled_directory = f"{directory_name}_Compiled"
+entIds_analized.append(pd.Timestamp.now())
 # Iterate over all files in the 'Content' folder
 for root, _, files in os.walk(content_folder):
     dir_b_path = os.path.join(content_folder, root)
     directory_data = {}
     quantity_per_concerning_company = 0
     entIds_analized.append(os.path.basename(root))
+    
+    # Append to entIds_analized the timestamp and date of the analysis based on the system timestamp 
+
+    
+
     for file in files:
         filtered_dfs = []
         filtered_rows = None
@@ -129,7 +135,7 @@ for root, _, files in os.walk(content_folder):
                         quantity_per_concerning_company += quantity_above_per_file
             
             else:
-                print(f"Neither Quantity nor video_views found in {csv_file_path}. Moving on to the next file.")
+                print(f"Neither Quantity, tkt_quantity, pndra_quantity or deezer_quantity found in {csv_file_path}. Moving on to the next file.")
 
                 continue
 
