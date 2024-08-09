@@ -4,6 +4,7 @@ Utility scripts for sending emails and other tasks
 
 # External modules
 import array
+import mimetypes
 import os
 import sys
 import io
@@ -158,8 +159,7 @@ def create_message2(message: str, email_from: str, email_to: str, subject: str, 
     msg['From'] = 'Nicolás Guasca'
     msg['Subject'] = subject
     # msg['Cc'] = 'nicolas.guasca@gmail.com', 'nicolas.g@revelator.com'
-    msg['Bcc'] = '420184@bcc.hubspot.com'
-    # msg['Cc'] = 'support@revelator.com'
+    msg['Bcc'] = ['420184@bcc.hubspot.com','infringement@revelator.com']
 
     # _____________________________________________________________________________
 
@@ -198,6 +198,66 @@ def create_message2(message: str, email_from: str, email_to: str, subject: str, 
 
     # Clean up the temporary directory
     shutil.rmtree(temp_dir)
+    return msg
+
+def create_message3(message: str, email_from: str, email_to: str, subject: str, folder_attachments: str, attachment_suffix: str, max_image_size: int = 1024) -> EmailMessage:
+    """
+    Use the EmailMessage class to create a message and return it.
+
+    Parameters
+    ----------
+    message : str
+        Message to send.
+    email_from : str
+        Email address to send from.
+    email_to : str
+        Email address to send to.
+    subject : str
+        Subject line.
+    folder_attachments : str
+        Path to the folder containing the attachments.
+    attachment_suffix : str
+        Name or identifier of the specific attachment to send.
+    max_image_size : int
+        Maximum size of the image to send (not used in this implementation).
+
+    Returns
+    -------
+    EmailMessage
+        The constructed email message with the attachment.
+    """
+    # Input checks
+    assert isinstance(message, str), f"Message should be a string, not {type(message)}"
+    assert isinstance(email_from, str), f"Email_from should be a string, not {type(email_from)}"
+    assert isinstance(email_to, str), f"Email_to should be a string, not {type(email_to)}"
+    assert isinstance(subject, str), f"Subject should be a string, not {type(subject)}"
+    assert os.path.exists(folder_attachments), f"Folder {folder_attachments} does not exist"
+
+    # Create the email message
+    msg = EmailMessage()
+    msg.set_content(message, subtype='html')
+    msg['To'] = email_to
+    msg['From'] = email_from
+    msg['Subject'] = subject
+    msg['Bcc'] = ['420184@bcc.hubspot.com','infringement@revelator.com']
+
+    # Construct the full path to the attachment
+    file_to_send = os.path.join(folder_attachments, attachment_suffix)
+
+    # Ensure the file exists
+    if not os.path.isfile(file_to_send):
+        raise FileNotFoundError(f"No such file: '{file_to_send}'")
+
+    # Determine the content type based on the file's extension
+    ctype, encoding = mimetypes.guess_type(file_to_send)
+    if ctype is None or encoding is not None:
+        ctype = 'application/octet-stream'
+    maintype, subtype = ctype.split('/', 1)
+
+    # Add the file as an attachment to the email
+    with open(file_to_send, 'rb') as fp:
+        msg.add_attachment(fp.read(), maintype='application', subtype=subtype, filename=os.path.basename(file_to_send))
+
     return msg
 
 def message2bytes(msg) -> dict:

@@ -8,7 +8,7 @@ python3 send_emails.py --attachment_suffix png jpg --email_suffix txt --max_imag
 
 # Arguments to specify the attachment and email suffix, as well as the maximum image size
 from utils import get_gmail_service, create_message2, message2bytes, press_Yn_to_continue
-from config import txt_message_Spotify, gmail_address, subject_line_all, scopes, credenciales, port, max_emails,txt_message_ALL_DSPS
+from config import txt_message_Spotify, gmail_address, subject_line_all, scopes, credenciales, port, max_emails,txt_violative_content
 from time import sleep
 
 from google.auth.transport.requests import Request
@@ -105,7 +105,7 @@ if __name__ == '__main__':
                 # -- (ii) Create the message -- #
 
                 
-                message = create_message2(message=txt_message_Spotify, email_from=gmail_address, email_to=gmail_address, subject=subject_line_all,
+                message = create_message2(message=txt_violative_content, email_from=gmail_address, email_to=gmail_address, subject=subject_line_all,
                 folder_attachments=args.folder_attachments, attachment_suffix=identifier, max_image_size=args.max_image_size)
                 # Update the recipient email
                 del message['To']

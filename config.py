@@ -171,6 +171,7 @@ txt_message_royalties_delayed = '''<!DOCTYPE html >
 </html >
 '''
 
+# Sent Aug 7th, 2024
 txt_message_Spotify = '''<!DOCTYPE html >
 <html >
 <head >
@@ -249,6 +250,7 @@ txt_message_Spotify = '''<!DOCTYPE html >
 </html >
 '''
 
+# Sent Aug 5th, 2024
 txt_message_ALL_DSPS = '''<!DOCTYPE html >
 <html >
 <head >
@@ -388,6 +390,64 @@ txt_penalty_update = '''<!DOCTYPE html >
 </html >
 '''
 
+txt_violative_content = '''<!DOCTYPE html >
+<html >
+<head >
+   <style >
+      body {{
+           font-family: Arial, sans-serif;
+           }}
+    </style >
+</head >
+<body >
+    <div>
+        <p>Dear Partner,</p>
+
+        <p>TikTok has identified the following content from your catalog as potentially invalid for TikTok (and all other UGC DSPs: Facebook Rights Manager, Snap, and YouTube CID).</p>
+        
+        <p>Please review the content and ensure that it is appropriate for <a href="https://helpdesk.revelator.com/a/solutions/articles/69000828338" target="blank">UGC DSPs </a> (and note that TikTok has further provided a reason why the content may be inappropriate).</p>
+        
+        <p><strong>Deadline for responding: Monday, August 12, 13:00 GMT.</strong> Please note that if we do not receive a response from you by that time, we will consider the content to be violative and take it down from all appropriate DSPs (in some cases all DSPs if the content requires a license).</p>
+        
+        <p>If the content is indeed inappropriate:</p>
+        <ul>
+            <li>Please remove the content from all relevant DSPs:</li>
+            <ul>
+                <li>All DSPs when the TikTok Issue is:
+                    <ul>
+                        <li>Ineligible Delivery</li>
+                        <li>Potentially Invalid</li>
+                        <li>Sped Up/Slowed Down</li>
+                        <li>Viral Mix/Mashup — or possibly only UGC DSPs, depending on the license(s) provided</li>
+                    </ul>
+                </li>
+                <li>UGC DSPs when the TikTok Issue is:
+                    <ul>
+                        <li>Hidden Recording</li>
+                        <li>UGC/PGC Copycat</li>
+                        <li>Viral Mix/Mashup — or possibly all DSPs, depending on the license(s) provided</li>
+                    </ul>
+                </li>
+            </ul>
+        </ul>
+        
+        <p>Please email us back to indicate your actions for each UPC.</p>
+
+        <p>If you contest TikTok’s findings and the content is indeed appropriate:</p>
+        <ul>
+            <li>Please email us back indicating the UPC and the reason why this content does not violate TikTok’s Content Policy.</li>
+            <li>If the content derives from, or includes, 3rd party content, please also attach all related license document(s).</li>
+        </ul>
+
+        <p>Thank you and all the best,</p>
+        
+        <p>Revelator</p>
+    </div>
+</body >
+</html >
+'''
+
+
 
 # gmail address
 gmail_address = 'Nicolás Guasca'
@@ -400,6 +460,8 @@ subject_line_above = 'Spotify AS Report August: Action Required'
 subject_line_below = 'Spotify AS Report August: No Action Required'
 
 subject_line_all = 'Spotify Artificial Streaming Reports 06/2024'
+
+subject_line_VIOLATIVE = '🔥 YOUR ACTION NEEDED - TikTok Invalid Content'
 
 
 # subject = : <span>&#x1F525;</span> URGENT - Spotify Artificial Streaming Report and Potential Fines
