@@ -161,7 +161,7 @@ for root, _, files in os.walk(content_folder):
     with open('directories_below_1000_spo.txt', 'w') as dir_file:
         for dir_name in directories_below_threshold:
             dir_file.write(f"{dir_name}\n")
-    with open('enterprises_analized.txt', 'w') as dir_file:
+    with open('enterprises_analized_from_dataframe_cell.txt', 'w') as dir_file:
         for dir_name in entIds_analized:
             dir_file.write(f"{dir_name}\n")
 

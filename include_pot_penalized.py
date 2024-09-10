@@ -7,7 +7,7 @@ import pandas as pd
 # Define paths being the first one the directory with the reports per customer and the second one the CSV file with the fines compiled
 main_folder = 'path_to_main_folder'
 separate_csv_path = 'path_to_separate_csv_file.csv'
-subfolders_txt_path = 'clients_analized.txt'
+subfolders_txt_path = 'clients_analized_for_fines.txt'
 
 
 # Check if the required arguments are provided
@@ -21,6 +21,7 @@ separate_csv_path = sys.argv[2]
 
 # List to store subfolder names
 subfolder_names = []
+
 
 try:
     # Load the separate CSV file
@@ -47,7 +48,7 @@ except Exception as e:
 # Iterate through each subfolder in the main folder
 for subfolder_name in os.listdir(main_folder):
     subfolder_path = os.path.join(main_folder, subfolder_name)
-    
+        
     # Check if it is a directory
     if os.path.isdir(subfolder_path):
         try:
@@ -78,6 +79,9 @@ for subfolder_name in os.listdir(main_folder):
 # Write subfolder names to a .txt file
 try:
     with open(subfolders_txt_path, 'w') as f:
+        f.write(f"Timestamp: {pd.Timestamp.now()}\n")
+        # Write folder processed at the beginning of the file
+        f.write(f"Folder processed: {main_folder}\n")
         for subfolder_name in subfolder_names:
             f.write(subfolder_name + '\n')
     print(f"Subfolder names written to {subfolders_txt_path}")
