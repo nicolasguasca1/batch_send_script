@@ -120,9 +120,9 @@ NOTE:If the interpreter you are using is 3.10 and .zshrc for shell profile use:
 
 2. After the config.py has been set up, email lists have been added to the emails/_.txt folder, and attachments (optional) have been added to the attachment/_ folder, the main script can be run. An example of the script call can be found below. When running this from the user command line, a browser window should open for authentication to give the app access to send emails from your gmail account. If it doesn't happen automatically, you can copy the link that will be printed to the console. Additionally, after the email list is printed out, users will need to confirm they want to go ahead with sending the email by typing "Y" into the console when prompted. If you type "n" the script will exit and no emails will send. If you type in anything else, you will be re-prompted to type in either "Y" or "n".
 
--> Make sure the amount below and above match the number of folders analized in total
+-> Make sure the amount below and above match the number of folders analyzed in total
 
-3. There will be a document created called 'enterprises_analized.txt' with the EntIds of the companies we need to contact. You can choose to select those or copy directories_above_1000.txt/below_1000.txt to populate a google sheet with the email addresses you will send to based on the report that uses the EntID of the company. Use the instructions available on the example sheet on the most recent doc from this folder: https://drive.google.com/drive/folders/11vDTkFzpenaQTOrcAk4zfmol8CKu-iMH
+3. There will be a document created called 'enterprises_analyzed.txt' with the EntIds of the companies we need to contact. You can choose to select those or copy directories_above_1000.txt/below_1000.txt to populate a google sheet with the email addresses you will send to based on the report that uses the EntID of the company. Use the instructions available on the example sheet on the most recent doc from this folder: https://drive.google.com/drive/folders/11vDTkFzpenaQTOrcAk4zfmol8CKu-iMH
 
 4. Follow the instruction in order to get a file like To_Export_All.csv to trigger the script.
 

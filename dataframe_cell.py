@@ -16,7 +16,7 @@ content_folder = args.folder_to_filter
 # List to store records
 data_dict = {}
 directories_above_threshold = []
-entIds_analized = []
+entIds_analyzed = []
 directories_below_threshold = []
 directories_above_threshold_count = 0
 directories_below_threshold_count = 0
@@ -25,15 +25,15 @@ quantity_threshold_tiktok = 10000
 quantities_concerning = {}
 directory_name = os.path.basename(content_folder)
 output_compiled_directory = f"{directory_name}_Compiled"
-entIds_analized.append(pd.Timestamp.now())
+entIds_analyzed.append(pd.Timestamp.now())
 # Iterate over all files in the 'Content' folder
 for root, _, files in os.walk(content_folder):
     dir_b_path = os.path.join(content_folder, root)
     directory_data = {}
     quantity_per_concerning_company = 0
-    entIds_analized.append(os.path.basename(root))
+    entIds_analyzed.append(os.path.basename(root))
     
-    # Append to entIds_analized the timestamp and date of the analysis based on the system timestamp 
+    # Append to entIds_analyzed the timestamp and date of the analysis based on the system timestamp 
 
     
 
@@ -161,8 +161,8 @@ for root, _, files in os.walk(content_folder):
     with open('directories_below_1000_spo.txt', 'w') as dir_file:
         for dir_name in directories_below_threshold:
             dir_file.write(f"{dir_name}\n")
-    with open('enterprises_analized_from_dataframe_cell.txt', 'w') as dir_file:
-        for dir_name in entIds_analized:
+    with open('enterprises_analyzed_from_dataframe_cell.txt', 'w') as dir_file:
+        for dir_name in entIds_analyzed:
             dir_file.write(f"{dir_name}\n")
 
 sorted_concerning = sorted(

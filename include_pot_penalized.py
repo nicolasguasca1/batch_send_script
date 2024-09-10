@@ -7,7 +7,7 @@ import pandas as pd
 # Define paths being the first one the directory with the reports per customer and the second one the CSV file with the fines compiled
 main_folder = 'path_to_main_folder'
 separate_csv_path = 'path_to_separate_csv_file.csv'
-subfolders_txt_path = 'clients_analized_for_fines.txt'
+subfolders_txt_path = 'clients_analyzed_for_fines.txt'
 
 
 # Check if the required arguments are provided

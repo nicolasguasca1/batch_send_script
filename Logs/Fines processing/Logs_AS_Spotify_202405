@@ -1,4 +1,4 @@
-python include_pot_penalized.py attachments/AS_Spotify_202405 attachments/AS_Spotify_May2024_Fines.csv 
+python include_pot_penalized.py attachments/AS_Spotify_202405 attachments/AS_Spotify_May2024_Fines.csv
 No records found for 50325. Skipping file creation.
 No records found for 410544. Skipping file creation.
 Filtered records for 287730 written to attachments/AS_Spotify_202405/287730/fines_applied.csv
@@ -99,5 +99,5 @@ Filtered records for 414368 written to attachments/AS_Spotify_202405/414368/fine
 No records found for 486393. Skipping file creation.
 Filtered records for 303709 written to attachments/AS_Spotify_202405/303709/fines_applied.csv
 No records found for 284397. Skipping file creation.
-Subfolder names written to clients_analized.txt
+Subfolder names written to clients_analyzed.txt
 Processing complete.
