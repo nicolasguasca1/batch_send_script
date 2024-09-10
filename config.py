@@ -185,13 +185,13 @@ txt_message_Spotify = '''<!DOCTYPE html >
     <div>
         <p>Dear Partner,</p>
 
-        <p><strong>Aug 7th, 2024</strong></p>
+        <p><strong>Aug 31st, 2024</strong></p>
 
         <p>Please find attached the latest data from Spotify regarding all artificial streaming (AS) related to your catalog.</p>
 
-        <p>1. This email contains a report of AS that Spotify has identified for <strong>June 2024</strong> streaming activity.</p>
+        <p>1. This email contains a report of AS that Spotify has identified for <strong>July 2024</strong> streaming activity.</p>
 
-        <p>2. If applicable, this email will also contain a report for tracks fined by Spotify for excessive AS resulting from <strong>May 2024</strong> streaming activity. If no such report is attached to this email this means that your catalog has not been fined at this time.</p>
+        <p>2. If applicable, this email will also contain a report for tracks fined by Spotify for excessive AS resulting from <strong>June 2024</strong> streaming activity. If no such report is attached to this email this means that your catalog has not been fined at this time.</p>
 
         <p>Please note:</p>
 
@@ -202,7 +202,7 @@ txt_message_Spotify = '''<!DOCTYPE html >
         </li>
 
         <li>
-            <p>Given Spotify’s reporting schedule it is likely that tracks which were fined for April AS will have further incurred fines in May and June. You should consider whether to take down these tracks now to avoid the same fines for July.</p>
+            <p>Given Spotify’s reporting schedule it is likely that tracks which were fined for previous month AS will have further incurred fines in the next months. You should consider whether to take down these tracks now to avoid the same fines for your next report.</p>
         </li>
 
         <li>
@@ -407,7 +407,7 @@ txt_violative_content = '''<!DOCTYPE html >
         
         <p>Please review the content and ensure that it is appropriate for <a href="https://helpdesk.revelator.com/a/solutions/articles/69000828338" target="blank">UGC DSPs </a> (and note that TikTok has further provided a reason why the content may be inappropriate).</p>
         
-        <p><strong>Deadline for responding: Monday, August 12, 13:00 GMT.</strong> Please note that if we do not receive a response from you by that time, we will consider the content to be violative and take it down from all appropriate DSPs (in some cases all DSPs if the content requires a license).</p>
+        <p><strong>Deadline for responding: Monday, August 19, 13:00 GMT.</strong> Please note that if we do not receive a response from you by that time, we will consider the content to be violative and take it down from all appropriate DSPs (in some cases all DSPs if the content requires a license).</p>
         
         <p>If the content is indeed inappropriate:</p>
         <ul>
@@ -459,7 +459,7 @@ subject_line_above = 'Spotify AS Report August: Action Required'
 
 subject_line_below = 'Spotify AS Report August: No Action Required'
 
-subject_line_all = 'Spotify Artificial Streaming Reports 06/2024'
+subject_line_all = 'Spotify Artificial Streaming Reports 07/2024'
 
 subject_line_VIOLATIVE = '🔥 YOUR ACTION NEEDED - TikTok Invalid Content'
 

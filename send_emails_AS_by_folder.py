@@ -105,7 +105,7 @@ if __name__ == '__main__':
                 # -- (ii) Create the message -- #
 
                 
-                message = create_message2(message=txt_violative_content, email_from=gmail_address, email_to=gmail_address, subject=subject_line_all,
+                message = create_message2(message=txt_message_Spotify, email_from=gmail_address, email_to=gmail_address, subject=subject_line_all,
                 folder_attachments=args.folder_attachments, attachment_suffix=identifier, max_image_size=args.max_image_size)
                 # Update the recipient email
                 del message['To']

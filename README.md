@@ -120,7 +120,7 @@ NOTE:If the interpreter you are using is 3.10 and .zshrc for shell profile use:
 
 2. After the config.py has been set up, email lists have been added to the emails/_.txt folder, and attachments (optional) have been added to the attachment/_ folder, the main script can be run. An example of the script call can be found below. When running this from the user command line, a browser window should open for authentication to give the app access to send emails from your gmail account. If it doesn't happen automatically, you can copy the link that will be printed to the console. Additionally, after the email list is printed out, users will need to confirm they want to go ahead with sending the email by typing "Y" into the console when prompted. If you type "n" the script will exit and no emails will send. If you type in anything else, you will be re-prompted to type in either "Y" or "n".
 
-\*Make sure the amount below and above match the number of folders analized in total
+-> Make sure the amount below and above match the number of folders analized in total
 
 3. There will be a document created called 'enterprises_analized.txt' with the EntIds of the companies we need to contact. You can choose to select those or copy directories_above_1000.txt/below_1000.txt to populate a google sheet with the email addresses you will send to based on the report that uses the EntID of the company. Use the instructions available on the example sheet on the most recent doc from this folder: https://drive.google.com/drive/folders/11vDTkFzpenaQTOrcAk4zfmol8CKu-iMH
 
@@ -128,7 +128,7 @@ NOTE:If the interpreter you are using is 3.10 and .zshrc for shell profile use:
 
 5. Remove the additional commas and the first line on each csv so the script grabs the emails accurately
 
-6. Change the contents of the text to send as message as well as the recipients in CC and subject and make sure it is being used by the script used (send_emails_all.py the latest)
+6. Change the contents of the text to send as message as well as the recipients in CC and subject and make sure it is being used by the script used (send_emails_violative_content_by_file.py the latest)
 
 7. Make a test sending an above and a below email to two different sample email addresses to see the attachments went well
 
@@ -136,13 +136,13 @@ NOTE:If the interpreter you are using is 3.10 and .zshrc for shell profile use:
 
 <!-- LEGACY COMMANDS: -->
 
-`python3 send_emails_above.py --folder_attachments /Users/nicolasguascasantamaria/Desktop/RevAPIS/extRepo/gmailAPI/attachments/<NAME_OF_THE_FOLDER> --csv_file_path To_Export_ABOVE.csv`
+`python3 send_emails_above.py --folder_attachments <ABS_PATH_TO_THE_FOLDER> --csv_file_path To_Export_ABOVE.csv`
 
-`python3 send_emails_below.py --folder_attachments /Users/nicolasguascasantamaria/Desktop/RevAPIS/extRepo/gmailAPI/attachments/<NAME_OF_THE_FOLDER> --csv_file_path To_Export_BELOW.csv`
+`python3 send_emails_below.py --folder_attachments <ABS_PATH_TO_THE_FOLDER> --csv_file_path To_Export_BELOW.csv`
 
 <!-- Latest script ran: -->
 
-`python send_emails_all.py --folder_attachments /Users/nicolasguascasantamaria/Desktop/RevAPIS/extRepo/gmailAPI/attachments/march_27th_processing  --csv_file_path To_Export_All.csv`
+`python send_emails_AS_by_folder.py --folder_attachments /Users/nicolasguascasantamaria/Desktop/RevAPIS/extRepo/gmailAPI/attachments/march_27th_processing  --csv_file_path To_Export_All.csv`
 
 ->It sends a folder with both Spotify + Tiktok reports and two files with the rows above 1k for Spo and rows above 10k for tiktok. It was sent to the customer and Support.
 
@@ -155,8 +155,9 @@ Test sending with 'bcc' to 420184@bcc.hbs.com
 
 Work also on the sum per ISRC
 
-May31st UPDATE!
-For the Spotify folder: Make sure the folder containing all the folders coming from opsscripting is in place to run include_pot_penalized script to add a detailed file with relevant information like so `python include_pot_penalized.py <RELATIVE_PATH_TO_ENTIRE_REPORT_TO_AFFECT> <RELATIVE_PATH_TO_SEGREGATED_REPORT_OBTAINED_WITH_PROBLEMATIC_ROWS>`
+For the Spo folder: Make sure the folder containing all the folders coming from opsscripting is in place to run include_pot_penalized script to add a detailed file with relevant information like so `python include_pot_penalized.py <RELATIVE_PATH_TO_ENTIRE_REPORT_TO_AFFECT> <RELATIVE_PATH_TO_SEGREGATED_REPORT_OBTAINED_WITH_PROBLEMATIC_ROWS>`
+
+Reports for Violative content: Prepare a folder coming from Opsscripting repo to process with send_emails_violative_content_by_file.py: `python send_emails_violative_content_by_file.py --source_folder /Users/nicolasguascasantamaria/Desktop/RevAPIS/extRepo/gmailAPI/attachments/violative_content_files --email_mapping_path To_Export_All.csv`
 
 <!-- FUTURE IMPROVEMENT -->
 
@@ -164,6 +165,4 @@ For the Spotify folder: Make sure the folder containing all the folders coming f
 
 2. Save the compiled folder into a drive link that we can share instead of the file itself
 
-3. Test sending with 'bcc' to 420184@bcc.hubspot.com
-
-4. Work also on the sum per ISRC
+3. Work also on the sum per ISRC
